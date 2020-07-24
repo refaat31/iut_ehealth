@@ -1,0 +1,12 @@
+#loginPage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
+
+#loginBox{
+	-fx-background-color:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2));
+	-fx-border-radius:20px;
+}
+
+#loginButton{
+	-fx-background-color:linear-gradient(to top,#fdc830,#ffffff);
+}

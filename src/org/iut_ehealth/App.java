@@ -23,10 +23,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("sample"));
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
-        stage.setHeight(700);
+        stage.setHeight(600);
         stage.setWidth(1000);
+        stage.setResizable(false);
 
         //connecting to db
         String driver = "com.mysql.cj.jdbc.Driver";
@@ -47,7 +48,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Resources/"+ fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
