@@ -1,5 +1,6 @@
-package org.iut_ehealth.Controllers;
+package org.iut_ehealth.Login;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -8,11 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.iut_ehealth.App;
+import org.iut_ehealth.UserSession;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,16 +29,18 @@ public class LoginController {
     private RadioButton teacherButton = new RadioButton();
     @FXML
     private RadioButton doctorButton = new RadioButton();
+    @FXML
+    private JFXButton loginButton = new JFXButton();
 
-
+    UserSession userSession = UserSession.getInstance();
 
     public void onLoginClick(ActionEvent actionEvent) {
 
 
         //getText() & isSelected()
-        String sqlStudent = "select *from userstudent where studentid = '"+emailField.getText()+"'and studentpassword = '"+passwordField.getText()+"'";
-        String sqlTeacher = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
-        String sqlDoctor = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
+//        String sqlStudent = "select *from userstudent where studentid = '"+emailField.getText()+"'and studentpassword = '"+passwordField.getText()+"'";
+//        String sqlTeacher = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
+//        String sqlDoctor = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
         //connecting to db
         //redundant code
         //try to connect once
@@ -53,13 +54,15 @@ public class LoginController {
             Statement myStatement = myConn.createStatement();
 
             if(studentButton.isSelected()) {
-                ResultSet rs = myStatement.executeQuery(sqlStudent);
+                String studentQuery = "select *from userstudent where studentid = '"+emailField.getText()+"'and studentpassword = '"+passwordField.getText()+"'";
+                ResultSet rs = myStatement.executeQuery(studentQuery);
                 if(rs.next()){
-                    System.out.println(emailField.getText());
-                    System.out.println(passwordField.getText());
-
+//                    System.out.println(emailField.getText());
+//                    System.out.println(passwordField.getText());
+                    userSession.setUsername(emailField.getText());
+                    userSession.setUsertype("student");
                     //the scene that we want to load
-                    Parent studentHomepage = FXMLLoader.load(getClass().getResource("../Resources/studentHomepage.fxml"));
+                    Parent studentHomepage = FXMLLoader.load(getClass().getResource("../Student/StudentHomepage/studentHomepage.fxml"));
                     Scene studentHomepageScene = new Scene(studentHomepage);
 
                     //this line gets stage information
@@ -71,7 +74,8 @@ public class LoginController {
                 else System.out.println("invalid username/password");
             }
             else if(teacherButton.isSelected()) {
-                ResultSet rs = myStatement.executeQuery(sqlTeacher);
+                String teacherQuery = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
+                ResultSet rs = myStatement.executeQuery(teacherQuery);
                 if(rs.next()){
                     System.out.println(emailField.getText());
                     System.out.println(passwordField.getText());
@@ -79,7 +83,8 @@ public class LoginController {
                 else System.out.println("invalid username/password");
             }
             else if(doctorButton.isSelected()) {
-                ResultSet rs = myStatement.executeQuery(sqlDoctor);
+                String doctorQuery = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
+                ResultSet rs = myStatement.executeQuery(doctorQuery);
                 if(rs.next()){
                     System.out.println(emailField.getText());
                     System.out.println(passwordField.getText());
