@@ -29,17 +29,11 @@ public class App extends Application {
         stage.setWidth(1000);
         stage.setResizable(false);
 
-        //connecting to db
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12353692";
-        String username = "sql12353692";
-        String password="NruRn74dY6";
-        try{
-            Connection myConn = DriverManager.getConnection(url,username,password);
-            System.out.println("Connection successful");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        // only connect to db once
+        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+        databaseConnection.connectToDatabase();
+        Connection myConn = databaseConnection.getConnectionObject();
+        System.out.println(myConn);
         stage.show();
     }
 

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
+import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
 import java.sql.Connection;
@@ -33,24 +34,16 @@ public class LoginController {
     private JFXButton loginButton = new JFXButton();
 
     UserSession userSession = UserSession.getInstance();
+    DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
     public void onLoginClick(ActionEvent actionEvent) {
 
 
         //getText() & isSelected()
-//        String sqlStudent = "select *from userstudent where studentid = '"+emailField.getText()+"'and studentpassword = '"+passwordField.getText()+"'";
-//        String sqlTeacher = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
-//        String sqlDoctor = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
-        //connecting to db
-        //redundant code
-        //try to connect once
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12353692";
-        String username = "sql12353692";
-        String password="NruRn74dY6";
+
 
         try{
-            Connection myConn = DriverManager.getConnection(url,username,password);
+            Connection myConn = databaseConnection.getConnectionObject();
             Statement myStatement = myConn.createStatement();
 
             if(studentButton.isSelected()) {
