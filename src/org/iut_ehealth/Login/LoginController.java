@@ -79,8 +79,16 @@ public class LoginController {
                 String doctorQuery = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
                 ResultSet rs = myStatement.executeQuery(doctorQuery);
                 if(rs.next()){
-                    System.out.println(emailField.getText());
-                    System.out.println(passwordField.getText());
+                    userSession.setUsername(emailField.getText());
+                    userSession.setUsertype("doctor");
+                    //the scene that we want to load
+                    Parent doctorHomepage = FXMLLoader.load(getClass().getResource("../Doctor/DoctorHomepage/doctorHomepage.fxml"));
+                    Scene doctorHomepageScene = new Scene(doctorHomepage);
+                    //this line gets stage information
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+                    window.setScene(doctorHomepageScene);
+                    window.show();
                 }
                 else System.out.println("invalid username/password");
             }
