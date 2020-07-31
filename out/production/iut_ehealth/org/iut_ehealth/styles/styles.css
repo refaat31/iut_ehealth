@@ -1,0 +1,18 @@
+#loginPage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
+
+#loginBox{
+	-fx-background-color:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2));
+	-fx-background-radius:10px;
+	
+}
+
+#loginButton{
+	-fx-background-color:linear-gradient(to top,#fdc830,#ffffff);
+	-fx-background-radius:20px;
+}
+
+#studentHomepage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}

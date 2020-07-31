@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginPage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Login.LoginController">
+   <children>
+      <Label layoutX="45.0" layoutY="144.0" text="A specialized health management system" />
+      <AnchorPane fx:id="loginBox" layoutX="524.0" layoutY="68.0" prefHeight="434.0" prefWidth="417.0" stylesheets="@../styles/styles.css">
+         <children>
+            <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="141.0" layoutY="198.0" prefHeight="26.0" prefWidth="150.0" promptText="password" style="-fx-border-radius: 20;" />
+            <Label layoutX="41.0" layoutY="36.0" prefHeight="34.0" prefWidth="80.0" text="Log In">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <HBox layoutX="106.0" layoutY="382.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="124.0" text="Don't have an account?" />
+                  <Hyperlink prefHeight="23.0" prefWidth="62.0" text="Sign Up " />
+               </children>
+            </HBox>
+            <JFXTextField fx:id="emailField" labelFloat="true" layoutX="141.0" layoutY="146.0" prefHeight="26.0" prefWidth="149.0" promptText="username/email">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></JFXTextField>
+            <JFXButton fx:id="loginButton" layoutX="132.0" layoutY="326.0" onAction="#onLoginClick" prefHeight="34.0" prefWidth="160.0" text="Login" />
+            <JFXRadioButton fx:id="doctorButton" layoutX="260.0" layoutY="265.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
+            <JFXRadioButton fx:id="teacherButton" layoutX="179.0" layoutY="265.0" onAction="#onTeacherButtonChosen" text="Teacher" />
+            <JFXRadioButton fx:id="studentButton" layoutX="98.0" layoutY="266.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="45.0" layoutY="90.0" prefHeight="63.0" prefWidth="406.0" text="IUT E-Health System">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

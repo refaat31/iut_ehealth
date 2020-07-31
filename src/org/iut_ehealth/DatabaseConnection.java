@@ -7,9 +7,9 @@ public class DatabaseConnection {
     private static DatabaseConnection instance = null;
 
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12353692";
-    private String username = "sql12353692";
-    private String password="NruRn74dY6";
+    private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12357858";
+    private String username = "sql12357858";
+    private String password="HtqFYX9t4G";
     private Connection myConn_;
 
     //factory method
