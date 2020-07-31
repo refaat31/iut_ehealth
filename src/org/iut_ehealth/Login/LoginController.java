@@ -10,12 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -32,6 +32,8 @@ public class LoginController {
     private RadioButton doctorButton = new RadioButton();
     @FXML
     private JFXButton loginButton = new JFXButton();
+
+
 
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
@@ -58,9 +60,20 @@ public class LoginController {
                     Parent studentHomepage = FXMLLoader.load(getClass().getResource("../Student/StudentHomepage/studentHomepage.fxml"));
                     Scene studentHomepageScene = new Scene(studentHomepage);
 
+
                     //this line gets stage information
                     Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-                    
+
+                    //login confirmation
+                    Stage dialog = new Stage();
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+
                     window.setScene(studentHomepageScene);
                     window.show();
                 }
@@ -114,5 +127,12 @@ public class LoginController {
     public void onDoctorButtonChosen(ActionEvent actionEvent) {
         studentButton.setSelected(false);
         teacherButton.setSelected(false);
+    }
+
+
+
+    public void continueHandler(ActionEvent actionEvent) {
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        window.close();
     }
 }
