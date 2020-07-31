@@ -4,8 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -72,8 +75,20 @@ public class doctorHomepageController  {
         rs.close();
     }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
-        System.out.println(userSession.getUsername());
-        System.out.println(userSession.getUsertype());
+        //the scene that we want to load
+        Parent LoginController = null;
+        try {
+            LoginController = FXMLLoader.load(getClass().getResource("../../Login/Login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene LoginControllerScene = new Scene(LoginController);
+
+        //this line gets stage information
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(LoginControllerScene);
+        window.show();
     }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
