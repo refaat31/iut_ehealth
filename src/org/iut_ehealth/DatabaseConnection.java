@@ -9,6 +9,7 @@ public class DatabaseConnection {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12357858";
     private String username = "sql12357858";
+    //this is a testing comment
     private String password="HtqFYX9t4G";
     private Connection myConn_;
 
