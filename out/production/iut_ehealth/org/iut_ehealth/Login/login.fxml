@@ -34,7 +34,7 @@
             <JFXRadioButton fx:id="doctorButton" layoutX="260.0" layoutY="265.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
             <JFXRadioButton fx:id="teacherButton" layoutX="179.0" layoutY="265.0" onAction="#onTeacherButtonChosen" text="Teacher" />
             <JFXRadioButton fx:id="studentButton" layoutX="98.0" layoutY="266.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
-            <JFXButton fx:id="signupButton" layoutX="248.0" layoutY="382.0" onAction="#onSignupClicked" text="Signup" />
+            <JFXButton fx:id="SignupButton" layoutX="234.0" layoutY="382.0" onAction="#onSignupClicked" text="Signup" textFill="#008fee" />
          </children>
       </AnchorPane>
       <Label layoutX="45.0" layoutY="90.0" prefHeight="63.0" prefWidth="406.0" text="IUT E-Health System">

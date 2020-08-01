@@ -26,7 +26,7 @@
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets></JFXTextField>
-                <JFXButton fx:id="signupnowButton" layoutX="197.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup" />
+                <JFXButton fx:id="signupButton" layoutX="197.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup" />
                 <JFXRadioButton fx:id="doctorButton" layoutX="277.0" layoutY="59.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
                 <JFXRadioButton fx:id="teacherButton" layoutX="182.0" layoutY="59.0" onAction="#onTeacherButtonChosen" text="Teacher" />
                 <JFXRadioButton fx:id="studentButton" layoutX="88.0" layoutY="58.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
