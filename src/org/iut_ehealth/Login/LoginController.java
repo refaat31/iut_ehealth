@@ -33,6 +33,8 @@ public class LoginController {
     private RadioButton doctorButton = new RadioButton();
     @FXML
     private JFXButton loginButton = new JFXButton();
+    @FXML
+    private JFXButton signupButton = new JFXButton();
 
 
 
