@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -9,55 +10,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="signupPage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Signup.SignupController">
     <children>
-        <AnchorPane fx:id="signupBox" layoutX="173.0" layoutY="8.0" prefHeight="560.0" prefWidth="554.0" stylesheets="@../styles/styles.css">
-            <children>
-                <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
-                <Label layoutX="26.0" layoutY="14.0" prefHeight="34.0" prefWidth="80.0" text="Sign up">
+      <Pane fx:id="signupBox" layoutX="199.0" layoutY="22.0">
+         <children>
+                <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="62.0" layoutY="416.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
+                <Label prefHeight="34.0" prefWidth="80.0" text="Sign up">
                     <font>
                         <Font size="22.0" />
                     </font>
                 </Label>
-                <HBox layoutX="106.0" layoutY="382.0" />
-                <JFXTextField fx:id="emailField" labelFloat="true" layoutX="88.0" layoutY="231.0" prefHeight="26.0" prefWidth="149.0" promptText="Email">
+                <HBox layoutX="80.0" layoutY="368.0" />
+                <JFXTextField fx:id="emailField" labelFloat="true" layoutX="62.0" layoutY="217.0" prefHeight="26.0" prefWidth="149.0" promptText="Email">
                     <opaqueInsets>
                         <Insets />
-                    </opaqueInsets></JFXTextField>
-                <JFXButton fx:id="signupnowButton" layoutX="197.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup" />
-                <JFXRadioButton fx:id="doctorButton" layoutX="277.0" layoutY="59.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
-                <JFXRadioButton fx:id="teacherButton" layoutX="182.0" layoutY="59.0" onAction="#onTeacherButtonChosen" text="Teacher" />
-                <JFXRadioButton fx:id="studentButton" layoutX="88.0" layoutY="58.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
-            <JFXTextField fx:id="nameField" labelFloat="true" layoutX="88.0" layoutY="108.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
+                    </opaqueInsets>
+            </JFXTextField>
+                <JFXButton fx:id="signupnowButton" layoutX="171.0" layoutY="498.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup" />
+                <JFXRadioButton fx:id="doctorButton" layoutX="251.0" layoutY="45.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
+                <JFXRadioButton fx:id="teacherButton" layoutX="156.0" layoutY="45.0" onAction="#onTeacherButtonChosen" text="Teacher" />
+                <JFXRadioButton fx:id="studentButton" layoutX="62.0" layoutY="44.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
+            <JFXTextField fx:id="nameField" labelFloat="true" layoutX="62.0" layoutY="94.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXTextField fx:id="idField" labelFloat="true" layoutX="88.0" layoutY="191.0" prefHeight="26.0" prefWidth="149.0" promptText="ID">
+            <JFXTextField fx:id="idField" labelFloat="true" layoutX="62.0" layoutY="177.0" prefHeight="26.0" prefWidth="149.0" promptText="ID">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXComboBox fx:id="ageField" layoutX="88.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Year of Birth" />
-            <JFXComboBox fx:id="bloodgroupField" layoutX="364.0" layoutY="109.0" prefHeight="25.0" prefWidth="149.0" promptText="Blood Group" />
-            <JFXTextField fx:id="contactnumberField" labelFloat="true" layoutX="88.0" layoutY="274.0" prefHeight="26.0" prefWidth="149.0" promptText="Contact Number">
+            <JFXComboBox fx:id="bloodgroupField" layoutX="338.0" layoutY="95.0" prefHeight="25.0" prefWidth="149.0" promptText="Blood Group" />
+            <JFXTextField fx:id="contactnumberField" labelFloat="true" layoutX="62.0" layoutY="260.0" prefHeight="26.0" prefWidth="149.0" promptText="Contact Number">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXComboBox fx:id="departmentField" layoutX="364.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Department" />
-            <JFXRadioButton fx:id="DocTeachButton" layoutX="317.0" layoutY="383.0" onAction="#onDocTeachButtonChosen" prefHeight="17.0" prefWidth="134.0" text="Doctor/Teacher" textAlignment="RIGHT" />
-            <JFXRadioButton fx:id="NonResButton" layoutX="186.0" layoutY="383.0" onAction="#onNonResButtonChosen" text="Non-Residential" />
-            <JFXRadioButton fx:id="ResidentialButton" layoutX="88.0" layoutY="382.0" onAction="#onResidentialButtonChosen" prefHeight="18.0" prefWidth="95.0" text="Residential" />
-            <JFXTextField fx:id="addressField" labelFloat="true" layoutX="88.0" layoutY="323.0" prefHeight="26.0" prefWidth="149.0" promptText="Address near IUT">
+            <JFXComboBox fx:id="departmentField" layoutX="338.0" layoutY="140.0" prefHeight="25.0" prefWidth="149.0" promptText="Department" />
+            <JFXRadioButton fx:id="DocTeachButton" layoutX="291.0" layoutY="369.0" onAction="#onDocTeachButtonChosen" prefHeight="17.0" prefWidth="134.0" text="Doctor/Teacher" textAlignment="RIGHT" />
+            <JFXRadioButton fx:id="NonResButton" layoutX="160.0" layoutY="369.0" onAction="#onNonResButtonChosen" text="Non-Residential" />
+            <JFXRadioButton fx:id="ResidentialButton" layoutX="62.0" layoutY="368.0" onAction="#onResidentialButtonChosen" prefHeight="18.0" prefWidth="95.0" text="Residential" />
+            <JFXTextField fx:id="addressField" labelFloat="true" layoutX="62.0" layoutY="309.0" prefHeight="26.0" prefWidth="149.0" promptText="Address near IUT">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="469.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
-            </children>
-        </AnchorPane>
+            <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="62.0" layoutY="455.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
+            <JFXDatePicker fx:id="ageField" layoutX="62.0" layoutY="139.0" prefHeight="28.0" prefWidth="160.0" />
+         </children>
+      </Pane>
     </children>
 </AnchorPane>
