@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -37,6 +38,22 @@ public class LoginController {
 
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+
+    public void onSignupClicked(ActionEvent actionEvent){
+        try {
+            Parent signuppage = FXMLLoader.load(getClass().getResource("../Signup/signup.fxml"));
+            Scene signuppageScene = new Scene(signuppage);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(signuppageScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void onLoginClick(ActionEvent actionEvent) {
 

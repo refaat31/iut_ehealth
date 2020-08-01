@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="studentHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorHomepage.doctorHomepageController">
+<AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorHomepage.doctorHomepageController">
     <children>
         <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Welcome Doctor" />
         <JFXButton fx:id="logoutButton" layoutX="491.0" layoutY="428.0" onAction="#onLogoutButtonClick" text="Logout" />
