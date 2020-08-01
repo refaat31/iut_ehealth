@@ -83,8 +83,26 @@ public class LoginController {
                 String teacherQuery = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
                 ResultSet rs = myStatement.executeQuery(teacherQuery);
                 if(rs.next()){
-                    System.out.println(emailField.getText());
-                    System.out.println(passwordField.getText());
+                    userSession.setUsername(emailField.getText());
+                    userSession.setUsertype("teacher");
+                    //the scene that we want to load
+                    Parent teacherHomepage = FXMLLoader.load(getClass().getResource("../Teacher/TeacherHomepage/teacherHomepage.fxml"));
+                    Scene teacherHomepageScene = new Scene(teacherHomepage);
+                    //this line gets stage information
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+                    //login confirmation
+                    Stage dialog = new Stage();
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+
+                    window.setScene(teacherHomepageScene);
+                    window.show();
                 }
                 else System.out.println("invalid username/password");
             }
@@ -99,6 +117,16 @@ public class LoginController {
                     Scene doctorHomepageScene = new Scene(doctorHomepage);
                     //this line gets stage information
                     Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+                    //login confirmation
+                    Stage dialog = new Stage();
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
 
                     window.setScene(doctorHomepageScene);
                     window.show();
