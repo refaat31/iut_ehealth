@@ -56,8 +56,9 @@
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="469.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
-            </children>
-        </AnchorPane>
+            <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="62.0" layoutY="455.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
+            <JFXComboBox fx:id="ageField" layoutX="62.0" layoutY="140.0" prefHeight="25.0" prefWidth="150.0" promptText="Date of Birth" />
+         </children>
+      </Pane>
     </children>
 </AnchorPane>
