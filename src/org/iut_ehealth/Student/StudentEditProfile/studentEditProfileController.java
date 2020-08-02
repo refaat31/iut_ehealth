@@ -1,4 +1,4 @@
-package org.iut_ehealth.Student.StudentHomepage;
+package org.iut_ehealth.Student.StudentEditProfile;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
@@ -26,11 +25,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class studentHomepageController  {
+public class studentEditProfileController  {
     @FXML
     private JFXButton logoutButton = new JFXButton();
-    @FXML
-    private JFXButton editProfileButton = new JFXButton();
     @FXML
     private JFXTextArea selectedFilePath = new JFXTextArea();
     private FileChooser fileChooser = new FileChooser();
@@ -93,22 +90,6 @@ public class studentHomepageController  {
         window.setScene(LoginControllerScene);
         window.show();
     }
-    public void onEditProfileClick(ActionEvent actionEvent){
-        Parent studentEditProfile = null;
-        try {
-            studentEditProfile = FXMLLoader.load(getClass().getResource("../StudentEditProfile/studentEditProfile.fxml"));
-            Scene studentEditProfileScene = new Scene(studentEditProfile);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(studentEditProfileScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
         String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
@@ -133,12 +114,12 @@ public class studentHomepageController  {
         );
         file = fileChooser.showOpenDialog(window);
         if(file!=null){
-                selectedFilePath.setText(file.getAbsolutePath());
-                image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
-                profilePicture.setImage(image);
-                profilePicture.setFitHeight(100);
-                profilePicture.setFitWidth(100);
-                profilePicture.setPreserveRatio(true);
+            selectedFilePath.setText(file.getAbsolutePath());
+            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            profilePicture.setImage(image);
+            profilePicture.setFitHeight(100);
+            profilePicture.setFitWidth(100);
+            profilePicture.setPreserveRatio(true);
         }
         else selectedFilePath.setText("No file selected");
     }
