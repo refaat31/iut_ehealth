@@ -218,6 +218,22 @@ public class SignupController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void onBackClick(ActionEvent actionEvent){
+        //the scene that we want to load
+        Parent LoginController = null;
+        try {
+            LoginController = FXMLLoader.load(getClass().getResource("../Login/Login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene LoginControllerScene = new Scene(LoginController);
+
+        //this line gets stage information
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(LoginControllerScene);
+        window.show();
+    }
     public void continueHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         window.close();

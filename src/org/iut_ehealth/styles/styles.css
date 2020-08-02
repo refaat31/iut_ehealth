@@ -16,3 +16,12 @@
 #studentHomepage{
 	-fx-background-color:linear-gradient(#fdc830,#f37335);
 }
+#doctorHomepage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
+#teacherHomepage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
+#signupPage{
+	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
