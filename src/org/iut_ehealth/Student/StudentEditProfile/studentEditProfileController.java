@@ -74,6 +74,22 @@ public class studentEditProfileController  {
         pst.close();
         rs.close();
     }
+    public void onMyAppointmentsClick(ActionEvent actionEvent){
+        Parent studentAppointments = null;
+        try {
+            studentAppointments = FXMLLoader.load(getClass().getResource("../Appointments/studentAppointments.fxml"));
+            Scene studentAppointmentsScene = new Scene(studentAppointments);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(studentAppointmentsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;
