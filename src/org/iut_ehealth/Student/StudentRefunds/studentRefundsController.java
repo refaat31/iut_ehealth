@@ -1,17 +1,24 @@
 package org.iut_ehealth.Student.StudentRefunds;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
@@ -41,6 +48,10 @@ public class studentRefundsController {
 
     private FileInputStream fis;
 
+    @FXML
+    private JFXTreeTableView refundsListView ;
+    ObservableList <refundModel> refundsList;
+
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
     Connection myConn = databaseConnection.getConnectionObject();
@@ -49,6 +60,7 @@ public class studentRefundsController {
 
 
     public void initialize() throws SQLException, IOException {
+
         String query = "SELECT image from userstudentinfo WHERE studentid=?";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,userSession.getUsername());
@@ -72,6 +84,37 @@ public class studentRefundsController {
         }
         pst.close();
         rs.close();
+
+        TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
+        TreeTableColumn status = new TreeTableColumn("Status");
+        BillNo.setPrefWidth(250);
+        status.setPrefWidth(150);
+        refundsListView.getColumns().addAll(BillNo,status);
+
+        refundsList = FXCollections.observableArrayList();
+
+        query = "SELECT BillNo,status from billdatabase where id = ?";
+        pst = myConn.prepareStatement(query);
+        pst.setString(1,userSession.getUsername());
+        rs = pst.executeQuery();
+        while(rs.next()){
+            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
+        }
+        pst.close();
+        rs.close();
+
+        BillNo.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModel,String>("BillNo")
+        );
+        status.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModel,String>("status")
+        );
+
+        TreeItem <refundModel> root = new RecursiveTreeItem<>(refundsList,RecursiveTreeObject::getChildren);
+        refundsListView.setRoot(root);
+        refundsListView.setShowRoot(false);
+
+
     }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
