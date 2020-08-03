@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -21,6 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
+
 
 import java.awt.*;
 import java.io.*;
@@ -101,23 +103,23 @@ public class studentRefundsController {
 
         refundsList = FXCollections.observableArrayList();
 
-        refundsList.add(new refundModel("001","pending"));
-        refundsList.add(new refundModel("002","pending"));
-        refundsList.add(new refundModel("003","pending"));
-        refundsList.add(new refundModel("007","pending"));
-        refundsList.add(new refundModel("005","pending"));
-        refundsList.add(new refundModel("001","pending"));
-        refundsList.add(new refundModel("001","pending"));
+//        refundsList.add(new refundModel("001","pending"));
+//        refundsList.add(new refundModel("002","pending"));
+//        refundsList.add(new refundModel("003","pending"));
+//        refundsList.add(new refundModel("007","pending"));
+//        refundsList.add(new refundModel("005","pending"));
+//        refundsList.add(new refundModel("001","pending"));
+//        refundsList.add(new refundModel("001","pending"));
 
-//        query = "SELECT BillNo,status from billdatabase where id = ?";
-//        pst = myConn.prepareStatement(query);
-//        pst.setString(1,userSession.getUsername());
-//        rs = pst.executeQuery();
-//        while(rs.next()){
-//            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
-//        }
-//        pst.close();
-//        rs.close();
+        query = "SELECT BillNo,status from billdatabase where id = ?";
+        pst = myConn.prepareStatement(query);
+        pst.setString(1,userSession.getUsername());
+        rs = pst.executeQuery();
+        while(rs.next()){
+            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
+        }
+        pst.close();
+        rs.close();
 
         BillNo.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModel,String>("BillNo")
@@ -219,7 +221,7 @@ public class studentRefundsController {
         pst.setString(1,userSession.getUsername());
         ResultSet rs = pst.executeQuery();
         rs.next();
-        int last_billNo = rs.getInt("rowcount");
+        int last_billNo = rs.getInt("COUNT(*)");
         rs.close();
 
         String query2 = "INSERT into billdatabase (BillNo,id,image) values (?,?,?)";
@@ -257,19 +259,47 @@ public class studentRefundsController {
     }
 
 
-    public void getSelectedItem(MouseEvent mouseEvent) {
+    public void getSelectedItem(MouseEvent mouseEvent) throws IOException, SQLException {
         refundModel rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-
+        showRefundImage(rm.getBillNo());
 
     }
 
-    public void getSelectedItemKey(KeyEvent keyEvent) {
+    public void getSelectedItemKey(KeyEvent keyEvent) throws IOException, SQLException {
        if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
            refundModel rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-           System.out.println(rm.getBillNo());
-           System.out.println(rm.getStatus());
+           showRefundImage(rm.getBillNo());
+//           System.out.println(rm.getBillNo());
+//           System.out.println(rm.getStatus());
        }
 
+    }
+
+    public void showRefundImage(String BillNumber) throws SQLException, IOException {
+        String query = "SELECT BillNo,image from billdatabase WHERE billNo = ? AND id=? ";
+        PreparedStatement pst = myConn.prepareStatement(query);
+        pst.setString(1,BillNumber);
+        pst.setString(2,userSession.getUsername());
+
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            InputStream is = rs.getBinaryStream("image");
+            OutputStream os = new FileOutputStream(new File("refundImage.jpg"));
+            byte[] content = new byte[1024];
+            int size = 0;
+            while((size = is.read(content))!=-1){
+                os.write(content,0,size);
+            }
+            is.close();
+            os.close();
+            image2 = new Image("file:refundImage.jpg",100,150,true,true);
+            refundImage.setImage(image2);
+            refundImage.setFitHeight(300);
+            refundImage.setFitWidth(400);
+            refundImage.setPreserveRatio(true);
+        }
+        pst.close();
+        rs.close();
     }
 
 
