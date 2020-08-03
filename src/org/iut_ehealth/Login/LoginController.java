@@ -88,7 +88,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();
@@ -115,7 +115,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();
@@ -132,7 +132,7 @@ public class LoginController {
                     userSession.setUsername(emailField.getText());
                     userSession.setUsertype("doctor");
                     //the scene that we want to load
-                    Parent doctorHomepage = FXMLLoader.load(getClass().getResource("../Doctor/DoctorHomepage/doctorHomepage.fxml"));
+                    Parent doctorHomepage = FXMLLoader.load(getClass().getResource("../Doctor/DoctorHomepage/DoctorHomepage.fxml"));
                     Scene doctorHomepageScene = new Scene(doctorHomepage);
                     //this line gets stage information
                     Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -142,7 +142,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();

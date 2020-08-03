@@ -1,36 +1,30 @@
-package org.iut_ehealth.Student.Appointments;
+package org.iut_ehealth.Doctor.DoctorHomepage;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class studentAppointmentsController  {
+public class DoctorHomepageController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
-    @FXML
-    private JFXButton editProfileButton = new JFXButton();
     @FXML
     private JFXTextArea selectedFilePath = new JFXTextArea();
     private FileChooser fileChooser = new FileChooser();
@@ -53,7 +47,7 @@ public class studentAppointmentsController  {
 
 
     public void initialize() throws SQLException, IOException {
-        String query = "SELECT image from userstudentinfo WHERE studentid=?";
+        String query = "SELECT image from userdoctorinfo WHERE doctorid=?";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,userSession.getUsername());
 
@@ -81,7 +75,7 @@ public class studentAppointmentsController  {
         //the scene that we want to load
         Parent LoginController = null;
         try {
-            LoginController = FXMLLoader.load(getClass().getResource("../../Login/Login.fxml"));
+            LoginController = FXMLLoader.load(getClass().getResource("../../Login/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,25 +87,9 @@ public class studentAppointmentsController  {
         window.setScene(LoginControllerScene);
         window.show();
     }
-    public void onEditProfileClick(ActionEvent actionEvent){
-        Parent studentEditProfile = null;
-        try {
-            studentEditProfile = FXMLLoader.load(getClass().getResource("../StudentEditProfile/studentEditProfile.fxml"));
-            Scene studentEditProfileScene = new Scene(studentEditProfile);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(studentEditProfileScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
+        String query = "UPDATE userdoctorinfo SET image=? WHERE doctorid=?";
         PreparedStatement pst = myConn.prepareStatement(query);
 
         try {

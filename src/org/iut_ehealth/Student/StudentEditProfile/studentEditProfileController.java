@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,14 +17,12 @@ import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class studentEditProfileController  {
+public class studentEditProfileController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
@@ -74,10 +71,10 @@ public class studentEditProfileController  {
         pst.close();
         rs.close();
     }
-    public void onMyAppointmentsClick(ActionEvent actionEvent){
+    public void onAppointmentsClick(ActionEvent actionEvent){
         Parent studentAppointments = null;
         try {
-            studentAppointments = FXMLLoader.load(getClass().getResource("../Appointments/studentAppointments.fxml"));
+            studentAppointments = FXMLLoader.load(getClass().getResource("../StudentsAppointments/studentAppointments.fxml"));
             Scene studentAppointmentsScene = new Scene(studentAppointments);
 
             //this line gets stage information
@@ -90,11 +87,27 @@ public class studentEditProfileController  {
         }
 
     }
+
+    public void onstudentRefundsClick(ActionEvent actionEvent){
+        Parent studentRefunds = null;
+        try {
+            studentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
+            Scene studentRefundsScene = new Scene(studentRefunds);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(studentRefundsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;
         try {
-            LoginController = FXMLLoader.load(getClass().getResource("../../Login/Login.fxml"));
+            LoginController = FXMLLoader.load(getClass().getResource("../../Login/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

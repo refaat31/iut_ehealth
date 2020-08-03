@@ -1,14 +1,10 @@
 package org.iut_ehealth.Signup;
 
 
-import com.jfoenix.controls.*;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -198,7 +194,7 @@ public class SignupController implements Initializable {
                 dialog.initOwner(window);
                 dialog.setHeight(250);
                 dialog.setWidth(500);
-                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("./signupSuccess.fxml")));
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("signupSuccess.fxml")));
                 dialog.setScene(loginSuccess);
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.showAndWait();
@@ -222,7 +218,7 @@ public class SignupController implements Initializable {
         //the scene that we want to load
         Parent LoginController = null;
         try {
-            LoginController = FXMLLoader.load(getClass().getResource("../Login/Login.fxml"));
+            LoginController = FXMLLoader.load(getClass().getResource("../Login/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
