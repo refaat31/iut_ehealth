@@ -2,7 +2,6 @@ package org.iut_ehealth.Student.StudentRefunds;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +15,10 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 
@@ -42,9 +42,16 @@ public class studentRefundsController {
     private File file ;
     private Desktop desktop = Desktop.getDesktop();
 
+
+
+    private Image image ;
+    private Image image2;
     @FXML
-    private ImageView profilePicture = new ImageView();
-    private Image image;
+    private ImageView profilePicture = new ImageView() ;
+    @FXML
+    private ImageView refundImage = new ImageView();
+    @FXML
+    private Label refundAlertMessage = new Label();
 
     private FileInputStream fis;
 
@@ -60,6 +67,7 @@ public class studentRefundsController {
 
 
     public void initialize() throws SQLException, IOException {
+
 
         String query = "SELECT image from userstudentinfo WHERE studentid=?";
         PreparedStatement pst = myConn.prepareStatement(query);
@@ -93,15 +101,23 @@ public class studentRefundsController {
 
         refundsList = FXCollections.observableArrayList();
 
-        query = "SELECT BillNo,status from billdatabase where id = ?";
-        pst = myConn.prepareStatement(query);
-        pst.setString(1,userSession.getUsername());
-        rs = pst.executeQuery();
-        while(rs.next()){
-            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
-        }
-        pst.close();
-        rs.close();
+        refundsList.add(new refundModel("001","pending"));
+        refundsList.add(new refundModel("002","pending"));
+        refundsList.add(new refundModel("003","pending"));
+        refundsList.add(new refundModel("007","pending"));
+        refundsList.add(new refundModel("005","pending"));
+        refundsList.add(new refundModel("001","pending"));
+        refundsList.add(new refundModel("001","pending"));
+
+//        query = "SELECT BillNo,status from billdatabase where id = ?";
+//        pst = myConn.prepareStatement(query);
+//        pst.setString(1,userSession.getUsername());
+//        rs = pst.executeQuery();
+//        while(rs.next()){
+//            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
+//        }
+//        pst.close();
+//        rs.close();
 
         BillNo.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModel,String>("BillNo")
@@ -110,7 +126,7 @@ public class studentRefundsController {
                 new TreeItemPropertyValueFactory<refundModel,String>("status")
         );
 
-        TreeItem <refundModel> root = new RecursiveTreeItem<>(refundsList,RecursiveTreeObject::getChildren);
+       TreeItem <refundModel>  root = new RecursiveTreeItem<>(refundsList,RecursiveTreeObject::getChildren);
         refundsListView.setRoot(root);
         refundsListView.setShowRoot(false);
 
@@ -197,19 +213,29 @@ public class studentRefundsController {
         }
     }
 
-    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
+    public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "SELECT COUNT(*) from billdatabase WHERE id=?";
         PreparedStatement pst = myConn.prepareStatement(query);
+        pst.setString(1,userSession.getUsername());
+        ResultSet rs = pst.executeQuery();
+        rs.next();
+        int last_billNo = rs.getInt("rowcount");
+        rs.close();
 
+        String query2 = "INSERT into billdatabase (BillNo,id,image) values (?,?,?)";
+        pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            refundAlertMessage.setText("Please select a valid file");
         }
 
-        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(1,Integer.toString(last_billNo+1));
         pst.setString(2,userSession.getUsername());
+        pst.setBinaryStream(3,(InputStream)fis,(int)file.length());
         pst.execute();
+        refundAlertMessage.setText("File uploaded!");
     }
 
     public void browseHandler(ActionEvent actionEvent) {
@@ -221,13 +247,29 @@ public class studentRefundsController {
         file = fileChooser.showOpenDialog(window);
         if(file!=null){
             selectedFilePath.setText(file.getAbsolutePath());
-            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
-            profilePicture.setImage(image);
-            profilePicture.setFitHeight(100);
-            profilePicture.setFitWidth(100);
-            profilePicture.setPreserveRatio(true);
+            image2 = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            refundImage.setImage(image2);
+            refundImage.setFitHeight(300);
+            refundImage.setFitWidth(400);
+            refundImage.setPreserveRatio(true);
         }
-        else selectedFilePath.setText("No file selected");
+        else refundAlertMessage.setText("Please select a file");
+    }
+
+
+    public void getSelectedItem(MouseEvent mouseEvent) {
+        refundModel rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+
+
+    }
+
+    public void getSelectedItemKey(KeyEvent keyEvent) {
+       if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
+           refundModel rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+           System.out.println(rm.getBillNo());
+           System.out.println(rm.getStatus());
+       }
+
     }
 
 
