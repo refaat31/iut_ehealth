@@ -137,6 +137,37 @@ public class studentHomepageController {
         }
     }
 
+    public void onPrescriptionButtonClick(ActionEvent actionEvent){
+        Parent StudentPrescription = null;
+        try {
+            StudentPrescription = FXMLLoader.load(getClass().getResource("../StudentPrescription/studentPrescription.fxml"));
+            Scene StudentPrescriptionScene = new Scene(StudentPrescription);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentPrescriptionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onStudentMedicalRecordsClick(ActionEvent actionEvent){
+        Parent StudentMedicalRecords = null;
+        try {
+            StudentMedicalRecords = FXMLLoader.load(getClass().getResource("../StudentMedicalRecords/studentMedicalRecords.fxml"));
+            Scene StudentMedicalRecordsScene = new Scene(StudentMedicalRecords);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentMedicalRecordsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
         String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
