@@ -1,11 +1,11 @@
-#loginPage{
+#loginPage,#signupPage{
 	-fx-background-color:linear-gradient(#fdc830,#f37335);
 }
 
 #loginBox{
 	-fx-background-color:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2));
 	-fx-background-radius:10px;
-	
+
 }
 
 #loginButton{
@@ -13,6 +13,8 @@
 	-fx-background-radius:20px;
 }
 
-#studentHomepage{
+#studentHomepage,#studentEditProfile,#studentAppointments,#studentRefunds,#studentPrescription,#studentMedicalRecords
+
+{
 	-fx-background-color:linear-gradient(#fdc830,#f37335);
 }
