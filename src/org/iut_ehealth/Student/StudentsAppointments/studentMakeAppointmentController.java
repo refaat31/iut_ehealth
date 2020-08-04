@@ -271,7 +271,7 @@ public class studentMakeAppointmentController implements Initializable {
                 PreparedStatement pst2 = myConn.prepareStatement(sql);
                 pst2.execute();
                 Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-                //login confirmation
+                //appointment confirmation
                 Stage dialog = new Stage();
                 dialog.initOwner(window);
                 dialog.setHeight(250);

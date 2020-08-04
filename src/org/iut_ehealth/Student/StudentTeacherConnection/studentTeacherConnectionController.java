@@ -2,6 +2,7 @@ package org.iut_ehealth.Student.StudentTeacherConnection;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
@@ -26,12 +28,17 @@ public class studentTeacherConnectionController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
+    private JFXButton ConnectButton = new JFXButton();
+    @FXML
+    private JFXTextField teacherIDField = new JFXTextField();
+    @FXML
     private JFXButton StudentTeacherConnectionButton = new JFXButton();
     @FXML
     private JFXButton editProfileButton = new JFXButton();
     @FXML
     private JFXTextArea selectedFilePath = new JFXTextArea();
     private FileChooser fileChooser = new FileChooser();
+
 
 
     private File file ;
@@ -91,6 +98,75 @@ public class studentTeacherConnectionController {
         window.setScene(LoginControllerScene);
         window.show();
     }
+    public void onConnectClick(ActionEvent actionEvent) {
+        try {
+            String sql ="select * from teacher_student_connection where studentid = '"+userSession.getUsername()+"' and teacherid = '"+teacherIDField.getText()+"'" ;
+            PreparedStatement pst2 = myConn.prepareStatement(sql);
+            ResultSet rss=pst2.executeQuery(sql);
+            boolean acflag=false;
+            boolean dneflag=true;
+
+            if(rss.next()){
+                acflag=true;
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //appointment confirmation
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/alreadyConnected.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
+                //JOptionPane.showMessageDialog(null,"Already connected");
+                //dispose();
+            }
+            String sql2="select * from userteacher where teacherid = '"+teacherIDField.getText()+"'" ;
+            ResultSet rss1;
+            rss1 = pst2.executeQuery(sql2);
+            if(rss1.next())
+                dneflag=false;
+            if(dneflag){
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //appointment confirmation
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/teacherNotFound.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
+                //JOptionPane.showMessageDialog(null,"This teacher ID does not exist!");
+                //dispose();
+            }
+            if(!dneflag&&!acflag){
+                String sql3 = "insert into teacher_student_connection values (?,?)";
+                PreparedStatement pst3;
+                pst3 = myConn.prepareStatement(sql3);
+                pst3.setString(1, teacherIDField.getText());
+                pst3.setString(2, userSession.getUsername());
+                pst3.execute();
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //appointment confirmation
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/connectionSuccess.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
+                //JOptionPane.showMessageDialog(null, "Connection made");
+            }
+
+
+        } catch (SQLException | IOException ex) {
+
+        }
+
+    }
+
     public void onEditProfileClick(ActionEvent actionEvent){
         Parent studentEditProfile = null;
         try {
