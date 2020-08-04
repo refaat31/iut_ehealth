@@ -26,6 +26,8 @@ public class studentHomepageController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
+    private JFXButton StudentTeacherConnectionButton = new JFXButton();
+    @FXML
     private JFXButton editProfileButton = new JFXButton();
     @FXML
     private JFXTextArea selectedFilePath = new JFXTextArea();
@@ -147,6 +149,21 @@ public class studentHomepageController {
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
             window.setScene(StudentPrescriptionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
+        Parent StudentTeacherConnection = null;
+        try {
+            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
+            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentTeacherConnectionScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();

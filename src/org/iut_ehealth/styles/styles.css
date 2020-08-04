@@ -13,7 +13,7 @@
 	-fx-background-radius:20px;
 }
 
-#studentHomepage,#studentEditProfile,#studentAppointments,#studentRefunds,#studentPrescription,#studentMakeAppointment,#studentMedicalRecords
+#studentHomepage,#studentEditProfile,#studentAppointments,#studentRefunds,#studentPrescription,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords
 
 {
 	-fx-background-color:linear-gradient(#fdc830,#f37335);

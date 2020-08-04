@@ -1,4 +1,4 @@
-package org.iut_ehealth.Student.StudentMedicalRecords;
+package org.iut_ehealth.Student.StudentTeacherConnection;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,9 +22,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class studentMedicalRecordsController {
+public class studentTeacherConnectionController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
+    @FXML
+    private JFXButton StudentTeacherConnectionButton = new JFXButton();
     @FXML
     private JFXButton editProfileButton = new JFXButton();
     @FXML
@@ -89,37 +91,6 @@ public class studentMedicalRecordsController {
         window.setScene(LoginControllerScene);
         window.show();
     }
-
-    public void onRefundsClick(ActionEvent actionEvent){
-        Parent StudentRefunds = null;
-        try {
-            StudentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
-            Scene StudentRefundsScene = new Scene(StudentRefunds);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(StudentRefundsScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
-        Parent StudentTeacherConnection = null;
-        try {
-            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
-            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(StudentTeacherConnectionScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public void onEditProfileClick(ActionEvent actionEvent){
         Parent studentEditProfile = null;
         try {
@@ -152,6 +123,22 @@ public class studentMedicalRecordsController {
         }
 
     }
+    public void onStudentRefundsClick(ActionEvent actionEvent){
+        Parent studentRefunds = null;
+        try {
+            studentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
+            Scene StudentRefundsScene = new Scene(studentRefunds);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentRefundsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void onPrescriptionButtonClick(ActionEvent actionEvent){
         Parent StudentPrescription = null;
         try {
@@ -167,7 +154,37 @@ public class studentMedicalRecordsController {
             e.printStackTrace();
         }
     }
+    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
+        Parent StudentTeacherConnection = null;
+        try {
+            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
+            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentTeacherConnectionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onStudentMedicalRecordsClick(ActionEvent actionEvent){
+        Parent StudentMedicalRecords = null;
+        try {
+            StudentMedicalRecords = FXMLLoader.load(getClass().getResource("../StudentMedicalRecords/studentMedicalRecords.fxml"));
+            Scene StudentMedicalRecordsScene = new Scene(StudentMedicalRecords);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentMedicalRecordsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
         String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
@@ -192,12 +209,12 @@ public class studentMedicalRecordsController {
         );
         file = fileChooser.showOpenDialog(window);
         if(file!=null){
-            selectedFilePath.setText(file.getAbsolutePath());
-            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
-            profilePicture.setImage(image);
-            profilePicture.setFitHeight(100);
-            profilePicture.setFitWidth(100);
-            profilePicture.setPreserveRatio(true);
+                selectedFilePath.setText(file.getAbsolutePath());
+                image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+                profilePicture.setImage(image);
+                profilePicture.setFitHeight(100);
+                profilePicture.setFitWidth(100);
+                profilePicture.setPreserveRatio(true);
         }
         else selectedFilePath.setText("No file selected");
     }

@@ -89,7 +89,21 @@ public class studentPrescriptionController {
         window.setScene(LoginControllerScene);
         window.show();
     }
+    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
+        Parent StudentTeacherConnection = null;
+        try {
+            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
+            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentTeacherConnectionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onRefundsClick(ActionEvent actionEvent){
         Parent StudentRefunds = null;
         try {

@@ -87,7 +87,21 @@ public class studentEditProfileController {
         }
 
     }
+    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
+        Parent StudentTeacherConnection = null;
+        try {
+            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
+            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentTeacherConnectionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onstudentRefundsClick(ActionEvent actionEvent){
         Parent studentRefunds = null;
         try {
