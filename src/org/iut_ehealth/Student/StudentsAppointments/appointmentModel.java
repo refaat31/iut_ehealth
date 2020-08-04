@@ -22,7 +22,7 @@ public class appointmentModel extends RecursiveTreeObject<appointmentModel> {
         this.year = new SimpleStringProperty(year);
     }
 
-    public String getId() {
+    public String getSt_id() {
         return st_id.get();
     }
 
@@ -46,7 +46,11 @@ public class appointmentModel extends RecursiveTreeObject<appointmentModel> {
         return year.get();
     }
 
-    public void setId(String st_id) {
+//    public void setId(String st_id) {
+//        this.st_id.set(st_id);
+//    }
+
+    public void setSt_id(String st_id) {
         this.st_id.set(st_id);
     }
 
