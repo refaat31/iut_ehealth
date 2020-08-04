@@ -41,6 +41,8 @@ public class studentAppointmentsController {
     private JFXButton logoutButton = new JFXButton();
     @FXML
     private JFXButton editProfileButton = new JFXButton();
+    @FXML
+    private JFXButton makeappointmentButton = new JFXButton();
 
     private File file ;
     private Desktop desktop = Desktop.getDesktop();
@@ -241,7 +243,7 @@ public class studentAppointmentsController {
     public void onMakeAppointmentClick(ActionEvent actionEvent){
         Parent StudentMakeAppointment = null;
         try {
-            StudentMakeAppointment = FXMLLoader.load(getClass().getResource("studentMakeAppointment.fxml"));
+            StudentMakeAppointment = FXMLLoader.load(getClass().getResource("../StudentsAppointments/studentMakeAppointment.fxml"));
             Scene StudentMakeAppointmentScene = new Scene(StudentMakeAppointment);
 
             //this line gets stage information

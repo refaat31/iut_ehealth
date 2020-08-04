@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.iut_ehealth.Student.StudentsAppointments.StudentMakeAppointment"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="studentMakeAppointment" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Student.StudentsAppointments.studentMakeAppointmentController">
+    <children>
+        <Label layoutX="518.0" layoutY="31.0" prefHeight="47.0" prefWidth="189.0" text="Make an Appointment" />
+        <JFXButton fx:id="logoutButton" layoutX="900.0" layoutY="542.0" onAction="#onLogoutButtonClick" text="Logout" />
+        <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
+            <children>
+                <JFXButton fx:id="editProfileButton" layoutX="57.0" layoutY="192.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
+                <JFXButton fx:id="myAppointmentsButton" layoutX="57.0" layoutY="245.0" onAction="#onMyAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
+                <JFXButton fx:id="StudentRefundsButton" layoutX="52.0" layoutY="308.0" onAction="#onStudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
+                <JFXButton fx:id="PrescriptionButton" layoutX="52.0" layoutY="368.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
+                <JFXButton fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="434.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
+                <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+                <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+            </children>
+        </Pane>
+      <Label layoutX="331.0" layoutY="149.0" prefHeight="34.0" prefWidth="83.0" text="Problem" />
+      <JFXTextField fx:id="problemField" layoutX="431.0" layoutY="153.0" prefHeight="25.0" prefWidth="468.0" />
+      <JFXComboBox fx:id="dayField" layoutX="431.0" layoutY="230.0" promptText="Day" />
+      <Label layoutX="264.0" layoutY="225.0" prefHeight="34.0" prefWidth="134.0" text="Date of Appointment" />
+      <JFXComboBox fx:id="monthField" layoutX="518.0" layoutY="230.0" prefHeight="25.0" prefWidth="63.0" promptText="Month" />
+      <Label layoutX="350.0" layoutY="300.0" prefHeight="34.0" prefWidth="45.0" text="Time" />
+      <JFXComboBox fx:id="timeField" layoutX="428.0" layoutY="305.0" prefHeight="25.0" prefWidth="63.0" />
+      <JFXButton fx:id="MakeAnAppointment" layoutX="518.0" layoutY="382.0" onAction="#onMakeAnAppointmentClick" prefHeight="34.0" prefWidth="156.0" text="Make Appointment" />
+    </children>
 </AnchorPane>
