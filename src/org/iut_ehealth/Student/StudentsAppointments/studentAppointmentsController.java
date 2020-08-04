@@ -135,22 +135,22 @@ public class studentAppointmentsController {
         rs.close();
 
         st_id.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("st_id")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("st_id")
         );
         time.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("time")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("time")
         );
         problem.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("problem")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("problem")
         );
         day.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("day")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("day")
         );
         month.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("month")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("month")
         );
         year.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModel,String>("year")
+                new TreeItemPropertyValueFactory<appointmentModel,String>("year")
         );
 
 
