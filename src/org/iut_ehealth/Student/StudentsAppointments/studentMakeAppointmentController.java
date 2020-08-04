@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
@@ -26,7 +27,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -199,21 +199,63 @@ public class studentMakeAppointmentController implements Initializable {
             pst = myConn.prepareStatement(sq2);
             ResultSet rss=pst.executeQuery(sq2);
             if(rss.next()){
-                //JOptionPane.showMessageDialog(null, "Time slot filled. Try again using different time");
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //Popup
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                try{Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/appointmentDateBooked.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+                }catch(IOException e){
+
+                }
+
+
             }
-            else if(Integer.parseInt(m)==2 ||Integer.parseInt(m)==4 ||Integer.parseInt(m)==6 ||Integer.parseInt(m)==9 ||Integer.parseInt(m)==11 ){
+            else if((Integer.parseInt(m)==2 ||Integer.parseInt(m)==4 ||Integer.parseInt(m)==6 ||Integer.parseInt(m)==9 ||Integer.parseInt(m)==11)&&flag==0 ){
                 if(Integer.parseInt(d)>30 || (Integer.parseInt(d)>28 && Integer.parseInt(m)==2)){
-                    //JOptionPane.showMessageDialog(null, "Invalid Date Input.");
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    //Popup
+                    Stage dialog = new Stage();
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/appointmentInvalid.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
                 }
                 else{
                     sql = "CALL make_appointment('"+userSession.getUsername()+"','"+(String)timeField.getValue()+"','"+problemField.getText()+"','"+(String)dayField.getValue()+"','"+(String)monthField.getValue()+"','"+y1+"')";
                     PreparedStatement pst2 = myConn.prepareStatement(sql);
                     pst2.execute();
-                    //JOptionPane.showMessageDialog(null, "Your Appointment has been made.");
+                    pst2.execute();
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    //Popup
+                    Stage dialog = new Stage();
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/appointmentSuccess.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
                 }
             }
             else if(flag==1){
-                //JOptionPane.showMessageDialog(null, "You have entered a date in the past.");
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //Popup
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/appointmentDatePast.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
             }
             else{
                 /*sql = "insert into appointment values (?,?,?,?,?,?)";
@@ -228,9 +270,18 @@ public class studentMakeAppointmentController implements Initializable {
                 sql = "CALL make_appointment('"+userSession.getUsername()+"','"+(String)timeField.getValue()+"','"+problemField.getText()+"','"+(String)dayField.getValue()+"','"+(String)monthField.getValue()+"','"+y1+"')";
                 PreparedStatement pst2 = myConn.prepareStatement(sql);
                 pst2.execute();
-                //JOptionPane.showMessageDialog(null, "Your Appointment has been made.");
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                //login confirmation
+                Stage dialog = new Stage();
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/appointmentSuccess.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
 
