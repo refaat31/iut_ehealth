@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="studentEditProfile" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Student.StudentEditProfile.studentEditProfileController">
     <children>
-        <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Edit mode" />
-        <JFXButton fx:id="logoutButton" layoutX="491.0" layoutY="428.0" onAction="#onLogoutButtonClick" text="Logout" />
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
@@ -22,8 +26,75 @@
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                 <JFXButton fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="496.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
                 <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+              <JFXButton fx:id="logoutButton" layoutX="78.0" layoutY="541.0" onAction="#onLogoutButtonClick" text="Logout" textFill="WHITE" />
+            <AnchorPane fx:id="signupBox" layoutX="256.0" layoutY="10.0" prefHeight="600.0" prefWidth="554.0" stylesheets="@../../styles/styles.css">
+               <children>
+                  <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="451.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
+                  <Label layoutX="20.0" layoutY="14.0" prefHeight="34.0" prefWidth="116.0" text="Edit Profile">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="106.0" layoutY="382.0" />
+                  <JFXTextField fx:id="emailField" labelFloat="true" layoutX="89.0" layoutY="254.0" prefHeight="26.0" prefWidth="149.0" promptText="Email">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXButton fx:id="editProfilenowButton" layoutX="384.0" layoutY="512.0" onAction="#oneditProfileClick" prefHeight="34.0" prefWidth="160.0" text="Update" />
+                  <JFXRadioButton fx:id="studentButton" layoutX="86.0" layoutY="64.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" selected="true" text="Student" />
+                  <JFXTextField fx:id="nameField" labelFloat="true" layoutX="89.0" layoutY="96.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXTextField fx:id="contactnumberField" labelFloat="true" layoutX="89.0" layoutY="306.0" prefHeight="26.0" prefWidth="149.0" promptText="Contact Number">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXComboBox fx:id="departmentField" layoutX="364.0" layoutY="142.0" prefHeight="25.0" prefWidth="149.0" promptText="Department" />
+                  <JFXRadioButton fx:id="NonResButton" layoutX="186.0" layoutY="417.0" onAction="#onNonResButtonChosen" text="Non-Residential" />
+                  <JFXRadioButton fx:id="ResidentialButton" layoutX="88.0" layoutY="416.0" onAction="#onResidentialButtonChosen" prefHeight="18.0" prefWidth="95.0" text="Residential" />
+                  <JFXTextField fx:id="addressField" labelFloat="true" layoutX="89.0" layoutY="356.0" prefHeight="26.0" prefWidth="149.0" promptText="Address near IUT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="499.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
+                  <Label fx:id="bloodGroupField" layoutX="360.0" layoutY="100.0" prefHeight="25.0" prefWidth="82.0" text="Blood group:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="yearofbirthField" layoutX="88.0" layoutY="155.0" prefHeight="25.0" prefWidth="82.0" text="Year of birth:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="yearofBirth" layoutX="183.0" layoutY="155.0" prefHeight="25.0" prefWidth="32.0" text="birth">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idfield" layoutX="88.0" layoutY="208.0" prefHeight="25.0" prefWidth="24.0" text="Id:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="id" layoutX="120.0" layoutY="208.0" prefHeight="25.0" prefWidth="116.0" text="id">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="bloodGroup" layoutX="703.0" layoutY="110.0" prefHeight="25.0" prefWidth="39.0" text="group">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
-        <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
     </children>
 </AnchorPane>

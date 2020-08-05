@@ -134,6 +134,24 @@ public class studentEditProfileController {
         window.show();
     }
 
+    public void oneditProfileClick(ActionEvent actionEvent) {
+
+    }
+
+    public void onStudentButtonChosen(ActionEvent actionEvent) {
+
+    }
+
+    public void onNonResButtonChosen(ActionEvent actionEvent) {
+
+    }
+    public void onResidentialButtonChosen(ActionEvent actionEvent) {
+
+    }
+
+
+
+
     public void onPrescriptionButtonClick(ActionEvent actionEvent){
         Parent StudentPrescription = null;
         try {
