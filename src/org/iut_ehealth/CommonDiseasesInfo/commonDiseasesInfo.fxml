@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="commonDiseasesInfo" fx:id="testLabel" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.CommonDiseasesInfo.commonDiseasesInfoController">
+    <children>
+        <Label layoutX="405.0" layoutY="21.0" prefHeight="47.0" prefWidth="189.0" text="Common Diseases Info" />
+        <JFXButton fx:id="logoutButton" layoutX="30.0" layoutY="547.0" onAction="#onLogoutButtonClick" prefHeight="33.0" prefWidth="60.0" text="Back" />
+        <JFXTreeTableView fx:id="commonDiseasesInfoListView" layoutX="24.0" layoutY="90.0" prefHeight="421.0" prefWidth="950.0" stylesheets="@../styles/tableView.css" />
+        <Label fx:id="refundAlertMessage" layoutX="829.0" layoutY="279.0" />
+    </children>
+</AnchorPane>

@@ -35,6 +35,8 @@ public class LoginController {
     private JFXButton loginButton = new JFXButton();
     @FXML
     private JFXButton signupButton = new JFXButton();
+    @FXML
+    private JFXButton commonDiseasesInfoButton = new JFXButton();
 
 
 
@@ -50,6 +52,21 @@ public class LoginController {
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
             window.setScene(signuppageScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void onCommonDiseasesInfoClick(ActionEvent actionEvent){
+        try {
+            Parent commonDiseasesInfoPage = FXMLLoader.load(getClass().getResource("../CommonDiseasesInfo/commonDiseasesInfo.fxml"));
+            Scene commonDiseasesInfoScene = new Scene(commonDiseasesInfoPage);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(commonDiseasesInfoScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
