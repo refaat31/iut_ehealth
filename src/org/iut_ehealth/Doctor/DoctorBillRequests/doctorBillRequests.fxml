@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,14 +19,12 @@
          </font></Label>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton id="navButton" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Edit Profile" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="57.0" layoutY="245.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="See Appointments" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="57.0" layoutY="245.0" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
                 <JFXButton id="navButtonCurrentPage" fx:id="BillRequests" layoutX="54.0" layoutY="308.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="54.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Slip Requests" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Upload Slip" textFill="WHITE" />
-                <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+                <JFXButton id="navButton" layoutX="54.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
               <JFXButton fx:id="logoutButton" layoutX="51.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="127.0" styleClass="logoutButton" text="Logout">
                <stylesheets>
                   <URL value="@../../styles/styles.css" />
@@ -34,8 +33,20 @@
             </JFXButton>
             </children>
         </Pane>
-      <JFXTextArea editable="false" labelFloat="true" layoutX="264.0" layoutY="57.0" opacity="0.6" prefHeight="47.0" prefWidth="439.0" text="Approve or deny bill requests.&#10;Or upload them if the patient is visiting you." />
-      <JFXTreeTableView fx:id="refundsListView" layoutX="282.0" layoutY="413.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
-      <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="407.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTreeTableView fx:id="refundsListView" layoutX="264.0" layoutY="406.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
+      <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="264.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+          <JFXButton fx:id="uploadImage" layoutX="813.0" layoutY="352.0" onAction="#refundImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+          <JFXButton fx:id="browseButton" layoutX="911.0" layoutY="352.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+      <JFXTextField fx:id="studentId" labelFloat="true" layoutX="763.0" layoutY="306.0" prefHeight="26.0" prefWidth="149.0" promptText="Student's ID">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXTextField>
+      <Label layoutX="763.0" layoutY="267.0" text="Student visiting you?">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="refundAlertMessage" layoutX="763.0" layoutY="382.0" prefHeight="18.0" prefWidth="148.0" />
     </children>
 </AnchorPane>

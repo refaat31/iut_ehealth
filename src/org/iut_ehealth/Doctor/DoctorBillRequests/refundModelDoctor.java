@@ -10,6 +10,7 @@ public class refundModelDoctor extends RecursiveTreeObject<refundModelDoctor> {
     private  SimpleStringProperty status;
 
     public refundModelDoctor(String id,String BillNo,String status){
+        this.id = new SimpleStringProperty(id);
         this.BillNo = new SimpleStringProperty(BillNo);
         this.status = new SimpleStringProperty(status);
     }
