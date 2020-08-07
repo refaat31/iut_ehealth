@@ -1,4 +1,4 @@
-package org.iut_ehealth.Doctor.DoctorHomepage;
+package org.iut_ehealth.Doctor.DoctorBillRequests;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DoctorHomepageController {
+public class DoctorBillRequestsController{
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML

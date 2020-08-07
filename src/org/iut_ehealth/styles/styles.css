@@ -8,13 +8,24 @@
 
 }
 
-#loginButton{
+#loginButton, #logoutButton{
 	-fx-background-color:linear-gradient(to top,#fdc830,#ffffff);
 	-fx-background-radius:20px;
 }
 
-#studentHomepage,#studentEditProfile,#teacherHomepage,#studentAppointments,#studentRefunds,#studentPrescription,#commonDiseasesInfo,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords
+#studentHomepage,#studentEditProfile,#teacherHomepage,#studentAppointments,#studentRefunds,#studentPrescription,#commonDiseasesInfo,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords,#doctorHomepage
 
 {
 	-fx-background-color:linear-gradient(#fdc830,#f37335);
+}
+
+#navButton {
+	-fx-border-color: white;
+	-fx-border-radius: 20px;
+}
+
+#navButtonCurrentPage {
+	-fx-background-color: white;
+	-fx-background-radius: 20px;
+	-fx-text-fill: black;
 }

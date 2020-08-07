@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorBillRequests.DoctorBillRequestsController">
+    <children>
+        <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Welcome Doctor" />
+        <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
+            <children>
+                <JFXButton id="navButton" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Edit Profile" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="57.0" layoutY="245.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="See Appointments" textFill="WHITE" />
+                <JFXButton id="navButtonCurrentPage" fx:id="BillRequests" layoutX="54.0" layoutY="308.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="54.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Slip Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Upload Slip" textFill="WHITE" />
+                <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+                <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+              <JFXButton fx:id="logoutButton" layoutX="51.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="127.0" styleClass="logoutButton" text="Logout">
+               <stylesheets>
+                  <URL value="@../../styles/styles.css" />
+                  <URL value="@../../styles/styles.css" />
+               </stylesheets>
+            </JFXButton>
+            </children>
+        </Pane>
+        <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
+    </children>
+</AnchorPane>
