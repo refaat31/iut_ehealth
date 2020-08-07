@@ -13,7 +13,7 @@
 	-fx-background-radius:20px;
 }
 
-#studentHomepage,#studentEditProfile,#teacherHomepage,#studentAppointments,#studentRefunds,#studentPrescription,#commonDiseasesInfo,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords
+#studentHomepage,#studentEditProfile,#teacherHomepage,#teacherYellowSlips,#studentAppointments,#studentRefunds,#studentPrescription,#commonDiseasesInfo,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords
 
 {
 	-fx-background-color:linear-gradient(#fdc830,#f37335);

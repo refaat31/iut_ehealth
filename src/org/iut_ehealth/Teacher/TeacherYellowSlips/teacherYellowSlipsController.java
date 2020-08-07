@@ -2,17 +2,28 @@ package org.iut_ehealth.Teacher.TeacherYellowSlips;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
+import org.iut_ehealth.Student.StudentRefunds.refundModel;
 import org.iut_ehealth.UserSession;
 
 import java.awt.*;
@@ -30,7 +41,8 @@ public class teacherYellowSlipsController {
     @FXML
     private JFXTextArea selectedFilePath = new JFXTextArea();
     private FileChooser fileChooser = new FileChooser();
-
+    @FXML
+    private ImageView yellowSlipsImage = new ImageView();
 
     private File file ;
     private Desktop desktop = Desktop.getDesktop();
@@ -38,8 +50,12 @@ public class teacherYellowSlipsController {
     @FXML
     private ImageView profilePicture = new ImageView();
     private Image image;
+    private Image image2;
 
     private FileInputStream fis;
+    @FXML
+    private JFXTreeTableView yellowSlipsListView ;
+    ObservableList<yellowSlipsModel> yellowSlipsList;
 
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
@@ -69,6 +85,74 @@ public class teacherYellowSlipsController {
             profilePicture.setFitHeight(100);
             profilePicture.setFitWidth(100);
             profilePicture.setPreserveRatio(true);
+        }
+        pst.close();
+        rs.close();
+        TreeTableColumn SlipNo = new TreeTableColumn("SlipNo");
+        TreeTableColumn Id = new TreeTableColumn("Id");
+        SlipNo.setPrefWidth(250);
+        Id.setPrefWidth(150);
+        yellowSlipsListView.getColumns().addAll(SlipNo,Id);
+
+        yellowSlipsList = FXCollections.observableArrayList();
+        String accept1 = "accept";
+        query = "select * from yellowslip,teacher_student_connection where teacher_student_connection.teacherid = '"+userSession.getUsername()+"' and yellowslip.accept = '"+accept1+"'and teacher_student_connection.studentid = yellowslip.Id" ;
+        pst = myConn.prepareStatement(query);
+        rs = pst.executeQuery();
+        while(rs.next()){
+            yellowSlipsList.add(new yellowSlipsModel(rs.getString("SlipNo"),rs.getString("Id")));
+        }
+        pst.close();
+        rs.close();
+
+        SlipNo.setCellValueFactory(
+                new TreeItemPropertyValueFactory<yellowSlipsModel,String>("SlipNo")
+        );
+        Id.setCellValueFactory(
+                new TreeItemPropertyValueFactory<yellowSlipsModel,String>("Id")
+        );
+
+        TreeItem<yellowSlipsModel> root = new RecursiveTreeItem<>(yellowSlipsList, RecursiveTreeObject::getChildren);
+        yellowSlipsListView.setRoot(root);
+        yellowSlipsListView.setShowRoot(false);
+    }
+    public void getSelectedItem(MouseEvent mouseEvent) throws IOException, SQLException {
+        yellowSlipsModel rm = yellowSlipsList.get(yellowSlipsListView.getSelectionModel().getSelectedIndex());
+        showYellowSlipsImage(rm.getSlipNo());
+
+    }
+
+    public void getSelectedItemKey(KeyEvent keyEvent) throws IOException, SQLException {
+        if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
+            yellowSlipsModel rm = yellowSlipsList.get(yellowSlipsListView.getSelectionModel().getSelectedIndex());
+            showYellowSlipsImage(rm.getSlipNo());
+//           System.out.println(rm.getBillNo());
+//           System.out.println(rm.getStatus());
+        }
+
+    }
+
+    public void showYellowSlipsImage(String SlipNumber) throws SQLException, IOException {
+        String query = "SELECT SlipNo,image from yellowslip WHERE slipNo = ?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+        pst.setString(1,SlipNumber);
+
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            InputStream is = rs.getBinaryStream("image");
+            OutputStream os = new FileOutputStream(new File("refundImage.jpg"));
+            byte[] content = new byte[1024];
+            int size = 0;
+            while((size = is.read(content))!=-1){
+                os.write(content,0,size);
+            }
+            is.close();
+            os.close();
+            image2 = new Image("file:refundImage.jpg",100,150,true,true);
+            yellowSlipsImage.setImage(image2);
+            yellowSlipsImage.setFitHeight(300);
+            yellowSlipsImage.setFitWidth(400);
+            yellowSlipsImage.setPreserveRatio(true);
         }
         pst.close();
         rs.close();

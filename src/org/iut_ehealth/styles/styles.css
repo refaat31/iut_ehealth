@@ -13,8 +13,8 @@
 	-fx-background-radius:20px;
 }
 
+ Refaat
 #studentHomepage,#studentEditProfile,#teacherHomepage,#studentAppointments,#studentRefunds,#studentPrescription,#commonDiseasesInfo,#studentMakeAppointment,#studentTeacherConnection,#studentMedicalRecords,#doctorHomepage
-
 {
 	-fx-background-color:linear-gradient(#fdc830,#f37335);
 }
