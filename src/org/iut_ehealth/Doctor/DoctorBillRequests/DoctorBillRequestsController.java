@@ -258,4 +258,51 @@ public class DoctorBillRequestsController{
     }
 
 
+    public void onBillAccepted(ActionEvent actionEvent) throws SQLException {
+        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        updateBillStatus(rm.getBillNo(),rm.getId(),"accepted");
+        Parent doctorBillRequests = null;
+        try {
+            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
+            Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(DoctorBillRequestsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onBillRejected(ActionEvent actionEvent) throws SQLException {
+        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        updateBillStatus(rm.getBillNo(),rm.getId(),"rejected");
+        Parent doctorBillRequests = null;
+        try {
+            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
+            Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(DoctorBillRequestsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBillStatus(String BillNo,String id,String status) throws SQLException {
+        String query = "UPDATE billdatabase SET status=? WHERE BillNo=? AND id=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+        pst.setString(1,status);
+        pst.setString(2,BillNo);
+        pst.setString(3,id);
+        pst.executeUpdate();
+        pst.close();
+
+
+    }
 }

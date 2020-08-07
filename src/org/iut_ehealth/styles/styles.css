@@ -20,6 +20,7 @@
 
 #navButton {
 	-fx-border-color: white;
+	-fx-opacity: 50%;
 	-fx-border-radius: 20px;
 }
 
@@ -27,4 +28,16 @@
 	-fx-background-color: white;
 	-fx-background-radius: 20px;
 	-fx-text-fill: black;
+}
+
+#acceptButton{
+	-fx-background-color: mediumseagreen;
+	-fx-background-radius: 20px;
+	-fx-text-fill: white;
+}
+
+#rejectButton{
+	-fx-background-color: orangered;
+	-fx-background-radius: 20px;
+	-fx-text-fill: white;
 }

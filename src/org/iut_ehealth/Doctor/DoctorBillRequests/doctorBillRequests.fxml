@@ -33,20 +33,30 @@
             </JFXButton>
             </children>
         </Pane>
-      <JFXTreeTableView fx:id="refundsListView" layoutX="264.0" layoutY="406.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
+      <JFXTreeTableView fx:id="refundsListView" layoutX="264.0" layoutY="385.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
       <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="264.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
-          <JFXButton fx:id="uploadImage" layoutX="813.0" layoutY="352.0" onAction="#refundImageHandler" style="-fx-background-color: white;" text="Upload Image" />
-          <JFXButton fx:id="browseButton" layoutX="911.0" layoutY="352.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-      <JFXTextField fx:id="studentId" labelFloat="true" layoutX="763.0" layoutY="306.0" prefHeight="26.0" prefWidth="149.0" promptText="Student's ID">
+          <JFXButton fx:id="uploadImage" layoutX="800.0" layoutY="152.0" onAction="#refundImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+          <JFXButton fx:id="browseButton" layoutX="898.0" layoutY="152.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+      <JFXTextField fx:id="studentId" labelFloat="true" layoutX="773.0" layoutY="106.0" prefHeight="26.0" prefWidth="149.0" promptText="Student's ID">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </JFXTextField>
-      <Label layoutX="763.0" layoutY="267.0" text="Student visiting you?">
+      <Label layoutX="773.0" layoutY="67.0" text="Student visiting you?">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="refundAlertMessage" layoutX="763.0" layoutY="382.0" prefHeight="18.0" prefWidth="148.0" />
+      <Label fx:id="refundAlertMessage" layoutX="773.0" layoutY="182.0" prefHeight="18.0" prefWidth="148.0" />
+      <JFXButton id="acceptButton" layoutX="773.0" layoutY="260.0" onAction="#onBillAccepted" prefHeight="34.0" prefWidth="150.0" text="ACCEPT">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="rejectButton" layoutX="773.0" layoutY="304.0" onAction="#onBillRejected" prefHeight="34.0" prefWidth="148.0" text="REJECT">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>
