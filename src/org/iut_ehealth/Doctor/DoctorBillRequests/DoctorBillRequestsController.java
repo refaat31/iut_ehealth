@@ -1,9 +1,6 @@
 package org.iut_ehealth.Doctor.DoctorBillRequests;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,6 +57,8 @@ public class DoctorBillRequestsController{
     private JFXTreeTableView refundsListView ;
     ObservableList<refundModelDoctor> refundsList;
 
+    @FXML
+    private JFXTextField studentId = new JFXTextField();
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
     Connection myConn = databaseConnection.getConnectionObject();
@@ -89,11 +88,12 @@ public class DoctorBillRequestsController{
             profilePicture.setPreserveRatio(true);
 
         }
+        TreeTableColumn id = new TreeTableColumn("Student Id");
         TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
         TreeTableColumn status = new TreeTableColumn("Status");
-        BillNo.setPrefWidth(250);
-        status.setPrefWidth(150);
-        refundsListView.getColumns().addAll(BillNo,status);
+//        BillNo.setPrefWidth(250);
+//        status.setPrefWidth(150);
+        refundsListView.getColumns().addAll(id,BillNo,status);
 
         refundsList = FXCollections.observableArrayList();
 
@@ -107,14 +107,19 @@ public class DoctorBillRequestsController{
 
         query = "SELECT id,BillNo,status from billdatabase";
         pst = myConn.prepareStatement(query);
-       
+
         rs = pst.executeQuery();
         while(rs.next()){
-            refundsList.add(new refundModelDoctor(rs.getString("id"),rs.getString("BillNo"),rs.getString("status")));
+            if(rs.getString("status").equals("pending")) {
+                refundsList.add(new refundModelDoctor(rs.getString("id"), rs.getString("BillNo"), rs.getString("status")));
+            }
         }
         pst.close();
         rs.close();
 
+        id.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModelDoctor,String>("id")
+        );
         BillNo.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModelDoctor,String>("BillNo")
         );
@@ -144,21 +149,35 @@ public class DoctorBillRequestsController{
         window.show();
     }
 
-    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "UPDATE userdoctorinfo SET image=? WHERE doctorid=?";
+    public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "SELECT MAX(BillNo) from billdatabase";
         PreparedStatement pst = myConn.prepareStatement(query);
+        //manually input the id of the student
+        if(studentId.getText().equals("")){
+            refundAlertMessage.setText("Please enter the id");
+        }
 
+        ResultSet rs = pst.executeQuery();
+        rs.next();
+        int last_billNo = rs.getInt("MAX(BillNo)");
+        rs.close();
+
+        String query2 = "INSERT into billdatabase (BillNo,id,status,image) values (?,?,?,?)";
+        pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            refundAlertMessage.setText("Please select a valid file");
         }
 
-        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
-        pst.setString(2,userSession.getUsername());
+        pst.setString(1,Integer.toString(last_billNo+1));
+        pst.setString(2, studentId.getText());
+        pst.setString(3,"accepted");
+        pst.setBinaryStream(4,(InputStream)fis,(int)file.length());
         pst.execute();
+        refundAlertMessage.setText("File uploaded!");
     }
-
     public void browseHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -168,13 +187,13 @@ public class DoctorBillRequestsController{
         file = fileChooser.showOpenDialog(window);
         if(file!=null){
             selectedFilePath.setText(file.getAbsolutePath());
-            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
-            profilePicture.setImage(image);
-            profilePicture.setFitHeight(100);
-            profilePicture.setFitWidth(100);
-            profilePicture.setPreserveRatio(true);
+            image2 = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            refundImage.setImage(image2);
+            refundImage.setFitHeight(300);
+            refundImage.setFitWidth(400);
+            refundImage.setPreserveRatio(true);
         }
-        else selectedFilePath.setText("No file selected");
+        else refundAlertMessage.setText("Please select a file");
     }
 
 
@@ -197,25 +216,25 @@ public class DoctorBillRequestsController{
 
     public void getSelectedItem(MouseEvent mouseEvent) throws IOException, SQLException {
         refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        showRefundImage(rm.getBillNo());
+        showRefundImage(rm.getBillNo(),rm.getId());
 
     }
 
     public void getSelectedItemKey(KeyEvent keyEvent) throws IOException, SQLException {
         if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
             refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-            showRefundImage(rm.getBillNo());
+            showRefundImage(rm.getBillNo(),rm.getId());
 //           System.out.println(rm.getBillNo());
 //           System.out.println(rm.getStatus());
         }
 
     }
 
-    public void showRefundImage(String BillNumber) throws SQLException, IOException {
-        String query = "SELECT BillNo,image from billdatabase WHERE billNo = ? AND id=? ";
+    public void showRefundImage(String BillNumber,String id) throws SQLException, IOException {
+        String query = "SELECT image from billdatabase WHERE billNo = ? AND id=? ";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,BillNumber);
-        pst.setString(2,userSession.getUsername());
+        pst.setString(2,id);
 
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
