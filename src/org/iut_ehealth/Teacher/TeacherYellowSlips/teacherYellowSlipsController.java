@@ -1,4 +1,4 @@
-package org.iut_ehealth.Teacher.TeacherHomepage;
+package org.iut_ehealth.Teacher.TeacherYellowSlips;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class teacherHomepageController  {
+public class teacherYellowSlipsController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
