@@ -1,18 +1,30 @@
-package org.iut_ehealth.Doctor.DoctorHomepage;
+package org.iut_ehealth.Doctor.DoctorBillRequests;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
+import org.iut_ehealth.Student.StudentRefunds.refundModel;
 import org.iut_ehealth.UserSession;
 
 import java.awt.*;
@@ -22,7 +34,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DoctorHomepageController {
+public class DoctorBillRequestsController{
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
@@ -33,16 +45,24 @@ public class DoctorHomepageController {
     private File file ;
     private Desktop desktop = Desktop.getDesktop();
 
+    private Image image ;
+    private Image image2;
     @FXML
-    private ImageView profilePicture = new ImageView();
-    private Image image;
+    private ImageView profilePicture = new ImageView() ;
+    @FXML
+    private ImageView refundImage = new ImageView();
+    @FXML
+    private javafx.scene.control.Label refundAlertMessage = new Label();
 
     private FileInputStream fis;
+
+    @FXML
+    private JFXTreeTableView refundsListView ;
+    ObservableList<refundModelDoctor> refundsList;
 
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
     Connection myConn = databaseConnection.getConnectionObject();
-
 
 
 
@@ -67,9 +87,45 @@ public class DoctorHomepageController {
             profilePicture.setFitHeight(100);
             profilePicture.setFitWidth(100);
             profilePicture.setPreserveRatio(true);
+
+        }
+        TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
+        TreeTableColumn status = new TreeTableColumn("Status");
+        BillNo.setPrefWidth(250);
+        status.setPrefWidth(150);
+        refundsListView.getColumns().addAll(BillNo,status);
+
+        refundsList = FXCollections.observableArrayList();
+
+//        refundsList.add(new refundModel("001","pending"));
+//        refundsList.add(new refundModel("002","pending"));
+//        refundsList.add(new refundModel("003","pending"));
+//        refundsList.add(new refundModel("007","pending"));
+//        refundsList.add(new refundModel("005","pending"));
+//        refundsList.add(new refundModel("001","pending"));
+//        refundsList.add(new refundModel("001","pending"));
+
+        query = "SELECT id,BillNo,status from billdatabase";
+        pst = myConn.prepareStatement(query);
+       
+        rs = pst.executeQuery();
+        while(rs.next()){
+            refundsList.add(new refundModelDoctor(rs.getString("id"),rs.getString("BillNo"),rs.getString("status")));
         }
         pst.close();
         rs.close();
+
+        BillNo.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModelDoctor,String>("BillNo")
+        );
+        status.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModelDoctor,String>("status")
+        );
+
+        TreeItem<refundModelDoctor> root = new RecursiveTreeItem<>(refundsList, RecursiveTreeObject::getChildren);
+        refundsListView.setRoot(root);
+        refundsListView.setShowRoot(false);
+
     }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
@@ -138,4 +194,49 @@ public class DoctorHomepageController {
         }
         System.out.println("hello world");
     }
+
+    public void getSelectedItem(MouseEvent mouseEvent) throws IOException, SQLException {
+        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        showRefundImage(rm.getBillNo());
+
+    }
+
+    public void getSelectedItemKey(KeyEvent keyEvent) throws IOException, SQLException {
+        if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
+            refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+            showRefundImage(rm.getBillNo());
+//           System.out.println(rm.getBillNo());
+//           System.out.println(rm.getStatus());
+        }
+
+    }
+
+    public void showRefundImage(String BillNumber) throws SQLException, IOException {
+        String query = "SELECT BillNo,image from billdatabase WHERE billNo = ? AND id=? ";
+        PreparedStatement pst = myConn.prepareStatement(query);
+        pst.setString(1,BillNumber);
+        pst.setString(2,userSession.getUsername());
+
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            InputStream is = rs.getBinaryStream("image");
+            OutputStream os = new FileOutputStream(new File("refundImage.jpg"));
+            byte[] content = new byte[1024];
+            int size = 0;
+            while((size = is.read(content))!=-1){
+                os.write(content,0,size);
+            }
+            is.close();
+            os.close();
+            image2 = new Image("file:refundImage.jpg",100,150,true,true);
+            refundImage.setImage(image2);
+            refundImage.setFitHeight(300);
+            refundImage.setFitWidth(400);
+            refundImage.setPreserveRatio(true);
+        }
+        pst.close();
+        rs.close();
+    }
+
+
 }
