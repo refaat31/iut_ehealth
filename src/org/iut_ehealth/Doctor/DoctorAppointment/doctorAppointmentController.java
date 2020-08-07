@@ -1,18 +1,27 @@
-package org.iut_ehealth.Doctor.DoctorHomepage;
+package org.iut_ehealth.Doctor.DoctorAppointment;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
+import org.iut_ehealth.Student.StudentsAppointments.appointmentModel;
 import org.iut_ehealth.UserSession;
 
 import java.awt.*;
@@ -21,8 +30,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class DoctorHomepageController {
+public class doctorAppointmentController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
@@ -38,6 +49,9 @@ public class DoctorHomepageController {
     private Image image;
 
     private FileInputStream fis;
+    @FXML
+    private JFXTreeTableView appointmentsListView ;
+    ObservableList<appointmentModel> appointmentsList;
 
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
@@ -70,6 +84,67 @@ public class DoctorHomepageController {
         }
         pst.close();
         rs.close();
+
+        TreeTableColumn st_id = new TreeTableColumn("st_id");
+        TreeTableColumn time = new TreeTableColumn("time");
+        TreeTableColumn problem = new TreeTableColumn("problem");
+        TreeTableColumn day = new TreeTableColumn("day");
+        TreeTableColumn month = new TreeTableColumn("month");
+        TreeTableColumn year = new TreeTableColumn("year");
+        st_id.setPrefWidth(150);
+        time.setPrefWidth(75);
+        problem.setPrefWidth(180);
+        day.setPrefWidth(75);
+        month.setPrefWidth(75);
+        year.setPrefWidth(75);
+        appointmentsListView.getColumns().addAll(st_id,time,problem,day,month,year);
+
+        appointmentsList = FXCollections.observableArrayList();
+
+        query = "SELECT st_id,time,problem,day,month,year from appointment ";
+        pst = myConn.prepareStatement(query);
+        rs = pst.executeQuery();
+        String d1,m1,y1;
+        Date dt= new Date();
+        //System.out.print("a");
+        SimpleDateFormat df1 = new SimpleDateFormat("dd");
+        d1=df1.format(dt);
+        SimpleDateFormat df2 = new SimpleDateFormat("MM");
+        m1=df2.format(dt);
+        SimpleDateFormat df3 = new SimpleDateFormat("YYYY");
+        y1=df3.format(dt);
+        while(rs.next()){
+            if(Integer.parseInt(rs.getString("year"))>Integer.parseInt(y1)||(Integer.parseInt(rs.getString("year"))==Integer.parseInt(y1)&&Integer.parseInt(rs.getString("month"))>Integer.parseInt(m1))||(Integer.parseInt(rs.getString("year"))==Integer.parseInt(y1)&&Integer.parseInt(rs.getString("month"))==Integer.parseInt(m1)&&Integer.parseInt(rs.getString("day"))>=Integer.parseInt(d1)))
+                appointmentsList.add(new org.iut_ehealth.Student.StudentsAppointments.appointmentModel(rs.getString("st_id"),rs.getString("time"),rs.getString("problem"),rs.getString("day"),rs.getString("month"),rs.getString("year")));
+        }
+        pst.close();
+        rs.close();
+
+        st_id.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("st_id")
+        );
+        time.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("time")
+        );
+        problem.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("problem")
+        );
+        day.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("day")
+        );
+        month.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("month")
+        );
+        year.setCellValueFactory(
+                new TreeItemPropertyValueFactory<org.iut_ehealth.Student.StudentsAppointments.appointmentModel,String>("year")
+        );
+
+
+        TreeItem<appointmentModel> root = new RecursiveTreeItem<>(appointmentsList, RecursiveTreeObject::getChildren);
+        appointmentsListView.setRoot(root);
+        appointmentsListView.setShowRoot(false);
+
+
     }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
