@@ -231,12 +231,11 @@ public class studentRefundsController {
     }
 
     public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "SELECT COUNT(*) from billdatabase WHERE id=?";
+        String query = "SELECT MAX(BillNo) from billdatabase";
         PreparedStatement pst = myConn.prepareStatement(query);
-        pst.setString(1,userSession.getUsername());
         ResultSet rs = pst.executeQuery();
         rs.next();
-        int last_billNo = rs.getInt("COUNT(*)");
+        int last_billNo = rs.getInt("MAX(BillNo)");
         rs.close();
 
         String query2 = "INSERT into billdatabase (BillNo,id,image) values (?,?,?)";
@@ -252,6 +251,19 @@ public class studentRefundsController {
         pst.setString(2,userSession.getUsername());
         pst.setBinaryStream(3,(InputStream)fis,(int)file.length());
         pst.execute();
+        Parent studentRefunds = null;
+        try {
+            studentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
+            Scene StudentRefundsScene = new Scene(studentRefunds);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentRefundsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         refundAlertMessage.setText("File uploaded!");
     }
 
