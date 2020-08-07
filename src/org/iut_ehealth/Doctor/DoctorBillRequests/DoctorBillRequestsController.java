@@ -148,7 +148,22 @@ public class DoctorBillRequestsController{
         window.setScene(LoginControllerScene);
         window.show();
     }
+    public void onSeeAppointmentClick(ActionEvent actionEvent) {
+        Parent doctorAppointment = null;
+        try {
+            doctorAppointment = FXMLLoader.load(getClass().getResource("../DoctorAppointment/doctorAppointment.fxml"));
+            Scene doctorAppointmentScene = new Scene(doctorAppointment);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(doctorAppointmentScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("hello world");
+    }
     public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
         String query = "SELECT MAX(BillNo) from billdatabase";
         PreparedStatement pst = myConn.prepareStatement(query);

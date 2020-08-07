@@ -14,8 +14,8 @@
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
-                <JFXButton layoutX="57.0" layoutY="245.0" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
-                <JFXButton layoutX="52.0" layoutY="308.0" prefHeight="40.0" prefWidth="116.0" text="Bill Requests" textFill="WHITE" />
+                <JFXButton fx:id="seeAppointmentButton" layoutX="57.0" layoutY="245.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
+                <JFXButton fx:id="BillRequests" layoutX="52.0" layoutY="308.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Bill Requests" textFill="WHITE" />
                 <JFXButton layoutX="52.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
                 <JFXButton layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
                 <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
