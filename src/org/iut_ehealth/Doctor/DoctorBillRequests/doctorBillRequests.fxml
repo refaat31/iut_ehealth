@@ -2,15 +2,20 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorBillRequests.DoctorBillRequestsController">
     <children>
-        <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Welcome Doctor" />
+        <Label layoutX="264.0" layoutY="10.0" prefHeight="47.0" prefWidth="189.0" text="Bill Requests">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font></Label>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton id="navButton" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Edit Profile" textFill="WHITE" />
@@ -29,6 +34,8 @@
             </JFXButton>
             </children>
         </Pane>
-        <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
+      <JFXTextArea editable="false" labelFloat="true" layoutX="264.0" layoutY="57.0" opacity="0.6" prefHeight="47.0" prefWidth="439.0" text="Approve or deny bill requests.&#10;Or upload them if the patient is visiting you." />
+      <JFXTreeTableView fx:id="refundsListView" layoutX="282.0" layoutY="413.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
+      <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="407.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

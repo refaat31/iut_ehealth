@@ -7,10 +7,10 @@ public class DatabaseConnection {
     private static DatabaseConnection instance = null;
 
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12357858";
-    private String username = "sql12357858";
+    private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12359105";
+    private String username = "sql12359105";
     //this is a testing comment
-    private String password="HtqFYX9t4G";
+    private String password="XsBjh9d1MD";
     private Connection myConn_;
 
     //factory method
