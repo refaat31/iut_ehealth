@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -17,83 +16,74 @@
     <children>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
-                <JFXButton fx:id="AppointmentsButton" layoutX="57.0" layoutY="245.0" onAction="#onAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
-                <JFXButton fx:id="studentRefundsButton" layoutX="52.0" layoutY="308.0" onAction="#onstudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
-                <JFXButton fx:id="PrescriptionButton" layoutX="52.0" layoutY="368.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
-                <JFXButton fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="434.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
+                <JFXButton layoutX="57.0" layoutY="185.0" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
+                <JFXButton fx:id="AppointmentsButton" layoutX="57.0" layoutY="241.0" onAction="#onAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
+                <JFXButton fx:id="studentRefundsButton" layoutX="52.0" layoutY="300.0" onAction="#onstudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
+                <JFXButton fx:id="PrescriptionButton" layoutX="52.0" layoutY="352.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
+                <JFXButton fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="412.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
                 <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                <JFXButton fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="496.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
+                <JFXButton fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="468.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
                 <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-              <JFXButton fx:id="logoutButton" layoutX="78.0" layoutY="541.0" onAction="#onLogoutButtonClick" text="Logout" textFill="WHITE" />
-            <AnchorPane fx:id="signupBox" layoutX="256.0" layoutY="10.0" prefHeight="600.0" prefWidth="554.0" stylesheets="@../../styles/styles.css">
+              <JFXButton fx:id="logoutButton" layoutX="78.0" layoutY="530.0" onAction="#onLogoutButtonClick" text="Logout" textFill="WHITE" />
+            <AnchorPane fx:id="signupBox" layoutX="264.0" layoutY="10.0" prefHeight="563.0" prefWidth="540.0" stylesheets="@../../styles/styles.css">
                <children>
-                  <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="451.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
-                  <Label layoutX="20.0" layoutY="14.0" prefHeight="34.0" prefWidth="116.0" text="Edit Profile">
+                  <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="382.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
+                  <Label layoutX="20.0" layoutY="10.0" prefHeight="34.0" prefWidth="116.0" text="Edit Profile">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                   <HBox layoutX="106.0" layoutY="382.0" />
-                  <JFXTextField fx:id="emailField" labelFloat="true" layoutX="89.0" layoutY="254.0" prefHeight="26.0" prefWidth="149.0" promptText="Email">
+                  <JFXTextField fx:id="emailField" labelFloat="true" layoutX="264.0" layoutY="253.0" prefHeight="26.0" prefWidth="149.0" promptText="Email">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </JFXTextField>
-                  <JFXButton fx:id="editProfilenowButton" layoutX="384.0" layoutY="512.0" onAction="#oneditProfileClick" prefHeight="34.0" prefWidth="160.0" text="Update" />
-                  <JFXRadioButton fx:id="studentButton" layoutX="86.0" layoutY="64.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" selected="true" text="Student" />
-                  <JFXTextField fx:id="nameField" labelFloat="true" layoutX="89.0" layoutY="96.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
+                  <JFXButton fx:id="editProfilenowButton" layoutX="258.0" layoutY="491.0" onAction="#oneditProfileClick" prefHeight="34.0" prefWidth="160.0" style="-fx-background-color: white;" text="Update" />
+                  <JFXRadioButton fx:id="studentButton" layoutX="110.0" layoutY="83.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" selected="true" text="Student" />
+                  <JFXTextField fx:id="nameField" labelFloat="true" layoutX="90.0" layoutY="149.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </JFXTextField>
-                  <JFXTextField fx:id="contactnumberField" labelFloat="true" layoutX="89.0" layoutY="306.0" prefHeight="26.0" prefWidth="149.0" promptText="Contact Number">
+                  <JFXTextField fx:id="contactnumberField" labelFloat="true" layoutX="88.0" layoutY="239.0" prefHeight="26.0" prefWidth="149.0" promptText="Contact Number">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </JFXTextField>
-                  <JFXComboBox fx:id="departmentField" layoutX="364.0" layoutY="142.0" prefHeight="25.0" prefWidth="149.0" promptText="Department" />
-                  <JFXRadioButton fx:id="NonResButton" layoutX="186.0" layoutY="417.0" onAction="#onNonResButtonChosen" text="Non-Residential" />
-                  <JFXRadioButton fx:id="ResidentialButton" layoutX="88.0" layoutY="416.0" onAction="#onResidentialButtonChosen" prefHeight="18.0" prefWidth="95.0" text="Residential" />
-                  <JFXTextField fx:id="addressField" labelFloat="true" layoutX="89.0" layoutY="356.0" prefHeight="26.0" prefWidth="149.0" promptText="Address near IUT">
+                  <JFXRadioButton fx:id="NonResButton" layoutX="356.0" layoutY="320.0" onAction="#onNonResButtonChosen" text="Non-Residential" />
+                  <JFXRadioButton fx:id="ResidentialButton" layoutX="258.0" layoutY="318.0" onAction="#onResidentialButtonChosen" prefHeight="18.0" prefWidth="95.0" text="Residential" />
+                  <JFXTextField fx:id="addressField" labelFloat="true" layoutX="88.0" layoutY="282.0" prefHeight="26.0" prefWidth="149.0" promptText="Address near IUT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="499.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
-                  <Label fx:id="bloodGroupField" layoutX="360.0" layoutY="100.0" prefHeight="25.0" prefWidth="82.0" text="Blood group:">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="yearofbirthField" layoutX="88.0" layoutY="155.0" prefHeight="25.0" prefWidth="82.0" text="Year of birth:">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="yearofBirth" layoutX="183.0" layoutY="155.0" prefHeight="25.0" prefWidth="32.0" text="birth">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="idfield" layoutX="88.0" layoutY="208.0" prefHeight="25.0" prefWidth="24.0" text="Id:">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="id" layoutX="120.0" layoutY="208.0" prefHeight="25.0" prefWidth="116.0" text="id">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
+                  <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="89.0" layoutY="433.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
+                  <JFXRadioButton fx:id="doctorButton" layoutX="305.0" layoutY="82.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
+                  <JFXRadioButton fx:id="teacherButton" layoutX="210.0" layoutY="84.0" onAction="#onTeacherButtonChosen" text="Teacher" />
+                  <JFXTextField fx:id="bloodGroupField" labelFloat="true" layoutX="88.0" layoutY="330.0" prefHeight="26.0" prefWidth="149.0" promptText="Blood group">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXTextField fx:id="departmentField" labelFloat="true" layoutX="263.0" layoutY="210.0" prefHeight="26.0" prefWidth="149.0" promptText="Department">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXTextField fx:id="ageField" labelFloat="true" layoutX="88.0" layoutY="193.0" prefHeight="26.0" prefWidth="149.0" promptText="Age">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
+                  <JFXTextField fx:id="idField" labelFloat="true" layoutX="264.0" layoutY="162.0" prefHeight="26.0" prefWidth="149.0" promptText="id">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXTextField>
                </children>
             </AnchorPane>
-            <Label fx:id="bloodGroup" layoutX="703.0" layoutY="110.0" prefHeight="25.0" prefWidth="39.0" text="group">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
             </children>
         </Pane>
     </children>

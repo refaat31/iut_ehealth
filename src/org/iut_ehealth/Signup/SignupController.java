@@ -1,11 +1,10 @@
 package org.iut_ehealth.Signup;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-
+//continueHandler
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +18,8 @@ import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.UserSession;
 import java.sql.PreparedStatement;
 import javafx.fxml.Initializable;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -62,6 +63,18 @@ public class SignupController implements Initializable {
     @FXML
     private JFXComboBox<String> departmentField = new JFXComboBox<>();
 
+    public String name = new String("");
+    public String id_no = new String("");
+    public String email = new String("");
+    public String age = new String("");
+    public String bg = new String("");
+    public String dept = new String("");
+    public String contact = new String("");
+    public String address = new String("");
+    public String pass = new String("");
+    public String confirm_pass = new String("");
+    public String resident = new String("");
+
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
     public void initialize(URL url, ResourceBundle rb){
@@ -104,6 +117,18 @@ public class SignupController implements Initializable {
 
     public void onSignupClick(ActionEvent actionEvent){
         try{
+
+            name = String.valueOf(nameField.getText());
+            age = (String)ageField.getValue();
+            bg = (String)bloodgroupField.getValue();
+            dept = (String)departmentField.getValue();
+            id_no = String.valueOf(idField.getText());
+            email = String.valueOf(emailField.getText());
+            contact = String.valueOf(contactnumberField.getText());
+            address = String.valueOf(addressField.getText());
+            pass    = String.valueOf(passwordField.getText());
+            confirm_pass = String.valueOf(confirmpasswordField.getText());
+
             Connection myConn = databaseConnection.getConnectionObject();
             Statement myStatement = myConn.createStatement();
 
@@ -141,7 +166,18 @@ public class SignupController implements Initializable {
                     flag=1;
                 }
             }
-            if(p.equals(c)&&flag==0){
+            if(p.length()==0)
+                JOptionPane.showMessageDialog(null, "password field cannot be empty");
+            else if(!p.equals(c))
+                JOptionPane.showMessageDialog(null, "password and confirm pass must match");
+            else if (flag==1)
+                JOptionPane.showMessageDialog(null, "Cannot sign up. Id already exist");
+
+            else if(name.length()==0 || age.length()==0 || bg.length()==0 || dept.length()==0 || id_no.length()==0 || email.length()==0 || contact.length()==0 || address.length()==0 || pass.length()==0 || confirm_pass.length()==0){
+
+                JOptionPane.showMessageDialog(null, "Cannot sign up.Some field are missing");
+            }
+            else{
                 String sql,sql2;
                 if(studentButton.isSelected()){
                     String sq2 ="select * from userstudent where studentid = '"+idField.getText()+"'";
@@ -202,12 +238,6 @@ public class SignupController implements Initializable {
                 //signinf.setVisible(true);
                 //JOptionPane.showMessageDialog(null, "Signup Successful.");
                 //dispose();
-            }
-            else if(flag==1){
-                //JOptionPane.showMessageDialog(null, "Try logging in");
-            }
-            else{
-                //JOptionPane.showMessageDialog(null, "Password and Confirmation did not match.");
 
             }
         }catch (Exception e){
