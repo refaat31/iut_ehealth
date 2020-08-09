@@ -252,10 +252,10 @@ public class studentMakeAppointmentController implements Initializable {
                         sql = "CALL make_appointment('" + userSession.getUsername() + "','" + (String) timeField.getValue() + "','" + problemField.getText() + "','" + (String) dayField.getValue() + "','" + (String) monthField.getValue() + "','" + y1 + "')";
                         PreparedStatement pst2 = myConn.prepareStatement(sql);
                         pst2.execute();
-                        pst2.execute();
                         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         //Popup
                         Stage dialog = new Stage();
+                        System.out.println("first call");
                         dialog.initOwner(window);
                         dialog.setHeight(250);
                         dialog.setWidth(500);
@@ -291,6 +291,7 @@ public class studentMakeAppointmentController implements Initializable {
                     Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                     //appointment confirmation
                     Stage dialog = new Stage();
+                    System.out.println("second call");
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
