@@ -73,6 +73,24 @@ public class teacherHomepageController  {
         pst.close();
         rs.close();
     }
+
+    public void onEditProfileClick(ActionEvent actionEvent){
+        Parent teacherEditProfile = null;
+        try {
+            teacherEditProfile = FXMLLoader.load(getClass().getResource("../TeacherEditProfile/teacherEditProfile.fxml"));
+            Scene teacherEditProfileScene = new Scene(teacherEditProfile);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(teacherEditProfileScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;

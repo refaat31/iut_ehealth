@@ -1,4 +1,4 @@
-package org.iut_ehealth.Student.StudentEditProfile;
+package org.iut_ehealth.Doctor.DoctorEditProfile;
 
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ import java.time.Period;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class studentEditProfileController {
+public class doctorEditProfileController {
 
 
     @FXML
@@ -127,7 +127,7 @@ public class studentEditProfileController {
         departmentField.setEditable(false);
         bloodGroupField.setEditable(false);
 
-        String query = "SELECT image from userstudentinfo WHERE studentid=?";
+        String query = "SELECT image from userdoctorinfo WHERE doctorid=?";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,userSession.getUsername());
 
@@ -151,15 +151,15 @@ public class studentEditProfileController {
             String sql3;
             //System.out.print("a");
             // sql = "select * from userstudentinfo where studentid = '"+id+"'";
-            sql3 = "SELECT * from userstudent where studentid = ?";
+            sql3 = "SELECT * from userdoctor where doctorid = ?";
             PreparedStatement pst3 = myConn.prepareStatement(sql3);
             pst3.setString(1,userSession.getUsername());
 
             //System.out.print("b");
             ResultSet rs3  = pst3.executeQuery();
             rs3.next();
-            passwordField.setText(rs3.getString("studentpassword"));
-            confirmpasswordField.setText(rs3.getString("studentpassword"));
+            passwordField.setText(rs3.getString("doctorpassword"));
+            confirmpasswordField.setText(rs3.getString("doctorpassword"));
 
             p2=String.valueOf(passwordField.getText());
             c2=String.valueOf(confirmpasswordField.getText());
@@ -167,7 +167,7 @@ public class studentEditProfileController {
             String sql;
             //System.out.print("a");
             // sql = "select * from userstudentinfo where studentid = '"+id+"'";
-            sql = "SELECT * from userstudentinfo where studentid = ?";
+            sql = "SELECT * from userdoctorinfo where doctorid = ?";
             pst = myConn.prepareStatement(sql);
             pst.setString(1,userSession.getUsername());
 
@@ -175,8 +175,8 @@ public class studentEditProfileController {
             rs  = pst.executeQuery();
             rs.next();
             // name = rs.getString("studentname");
-            nameField.setText(rs.getString("studentname"));
-            age_init = rs.getString("studentage");
+            nameField.setText(rs.getString("doctorname"));
+            age_init = rs.getString("doctorage");
             // LocalDate today = LocalDate.now();
             //Period p = Period.between(LocalDate.parse(age_init), today);
             //system_year = select extract(year from sysdate) from dual;
@@ -192,12 +192,12 @@ public class studentEditProfileController {
             age_n= Integer.toString(diff);
             //System.out.println(birth_d + " " + current_d+ " " + diff+ " " + age_n );
             ageField.setText(age_n);
-            idField.setText(rs.getString("studentid"));
-            bloodGroupField.setText(rs.getString("studentbg"));
-            departmentField.setText(rs.getString("studentdept"));
-            contactnumberField.setText(rs.getString("studentcontact"));
-            emailField.setText(rs.getString("studentemail"));
-            resident = rs.getString("studentres");
+            idField.setText(rs.getString("doctorid"));
+            bloodGroupField.setText(rs.getString("doctorbg"));
+            departmentField.setText(rs.getString("doctorspeciality"));
+            contactnumberField.setText(rs.getString("doctorcontact"));
+            emailField.setText(rs.getString("doctoremail"));
+            resident = rs.getString("doctorres");
             // System.out.println(resident);
             if(resident.equals("Residential")){
                 ResidentialButton.setSelected(true);
@@ -205,7 +205,7 @@ public class studentEditProfileController {
             else{
                 NonResButton.setSelected(true);
             }
-            addressField.setText(rs.getString("studentaddress"));
+            addressField.setText(rs.getString("doctoraddress"));
 
             name_init = String.valueOf(nameField.getText());
             age_init = String.valueOf(ageField.getText());
@@ -224,52 +224,7 @@ public class studentEditProfileController {
         pst.close();
         rs.close();
     }
-    public void onAppointmentsClick(ActionEvent actionEvent){
-        Parent studentAppointments = null;
-        try {
-            studentAppointments = FXMLLoader.load(getClass().getResource("../StudentsAppointments/studentAppointments.fxml"));
-            Scene studentAppointmentsScene = new Scene(studentAppointments);
 
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(studentAppointmentsScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    public void onStudentTeacherConnectionClick(ActionEvent actionEvent){
-        Parent StudentTeacherConnection = null;
-        try {
-            StudentTeacherConnection = FXMLLoader.load(getClass().getResource("../StudentTeacherConnection/studentTeacherConnection.fxml"));
-            Scene StudentTeacherConnectionScene = new Scene(StudentTeacherConnection);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(StudentTeacherConnectionScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void onstudentRefundsClick(ActionEvent actionEvent){
-        Parent studentRefunds = null;
-        try {
-            studentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
-            Scene studentRefundsScene = new Scene(studentRefunds);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(studentRefundsScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;
@@ -322,11 +277,11 @@ public class studentEditProfileController {
                 JOptionPane.showMessageDialog(null, "Cannot sign up.Some field are missing");
             }
             else{
-                String sql2 = "update userstudent set studentpassword = '" + p + "' where studentid = '" + id_no + "'";
+                String sql2 = "update userdoctor set doctorpassword = '" + p + "' where doctorid = '" + id_no + "'";
                 PreparedStatement pst = myConn.prepareStatement(sql2);
                 pst.execute();
                 //String sql = "update userstudentinfo set studentname = '" + name + "' ,studentage ='" + age + "',studentbg='" + bg + "',studentdept='" + dept + "',studentcontact='" + contact + "',studentemail='" + email + "',studentaddress='" + address + "',studentres='" + stat + "'where studentid='" + id_no + "'";
-                String sql = "update userstudentinfo set studentname = '" + name +"',studentcontact='" + contact + "',studentemail='" + email + "',studentaddress='" + address + "',studentres='" + stat + "'where studentid='" + id_no + "'";
+                String sql = "update userdoctorinfo set doctorname = '" + name +"',doctorcontact='" + contact + "',doctoremail='" + email + "',doctoraddress='" + address + "',doctorres='" + stat + "'where doctorid='" + id_no + "'";
                 // PreparedStatement pst;
                 //   PreparedStatement pst = myConn.prepareStatement(sql);
                 //  try {
@@ -335,9 +290,7 @@ public class studentEditProfileController {
                 PreparedStatement pst2 = myConn.prepareStatement(sql);
                 pst2.execute();
 
-                Parent StudentHomepage;
-                StudentHomepage = FXMLLoader.load(getClass().getResource("../StudentHomepage/studentHomepage.fxml"));
-                Scene StudentHomepageScene = new Scene(StudentHomepage);
+
                 Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
                 //login confirmation
@@ -345,12 +298,16 @@ public class studentEditProfileController {
                 dialog.initOwner(window);
                 dialog.setHeight(250);
                 dialog.setWidth(500);
-                Scene updateSuccess = new Scene(FXMLLoader.load(getClass().getResource("studentEditProfileSuccess.fxml")));
+                Scene updateSuccess = new Scene(FXMLLoader.load(getClass().getResource("doctorEditProfileSuccess.fxml")));
                 dialog.setScene(updateSuccess);
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.showAndWait();
 
-                window.setScene(StudentHomepageScene);
+                Parent DoctorHomepage;
+                DoctorHomepage = FXMLLoader.load(getClass().getResource("../DoctorHomepage/doctorHomepage.fxml"));
+                Scene DoctorHomepageScene = new Scene(DoctorHomepage);
+
+                window.setScene(DoctorHomepageScene);
                 window.show();
                 flag = 1 ;
 
@@ -376,21 +333,21 @@ public class studentEditProfileController {
     }
 
     public void onStudentButtonChosen(ActionEvent actionEvent) {
-        doctorButton.setSelected(false);
+        doctorButton.setSelected(true);
         teacherButton.setSelected(false);
-        studentButton.setSelected(true);
+        studentButton.setSelected(false);
     }
 
     public void onTeacherButtonChosen(ActionEvent actionEvent) {
-        doctorButton.setSelected(false);
+        doctorButton.setSelected(true);
         teacherButton.setSelected(false);
-        studentButton.setSelected(true);
+        studentButton.setSelected(false);
     }
 
     public void onDoctorButtonChosen(ActionEvent actionEvent) {
-        doctorButton.setSelected(false);
+        doctorButton.setSelected(true);
         teacherButton.setSelected(false);
-        studentButton.setSelected(true);
+        studentButton.setSelected(false);
     }
     public void onNonResButtonChosen(ActionEvent actionEvent) {
         NonResButton.setSelected(true);
@@ -403,36 +360,39 @@ public class studentEditProfileController {
 
 
 
-    public void onPrescriptionButtonClick(ActionEvent actionEvent){
-        Parent StudentPrescription = null;
+
+    public void onBillRequestsClick(ActionEvent actionEvent) {
+        Parent doctorBillRequests = null;
         try {
-            StudentPrescription = FXMLLoader.load(getClass().getResource("../StudentPrescription/studentPrescription.fxml"));
-            Scene StudentPrescriptionScene = new Scene(StudentPrescription);
+            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
+            Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
 
             //this line gets stage information
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
-            window.setScene(StudentPrescriptionScene);
+            window.setScene(DoctorBillRequestsScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("hello world");
     }
 
-    public void onStudentMedicalRecordsClick(ActionEvent actionEvent){
-        Parent StudentMedicalRecords = null;
+    public void onSeeAppointmentClick(ActionEvent actionEvent) {
+        Parent doctorAppointment = null;
         try {
-            StudentMedicalRecords = FXMLLoader.load(getClass().getResource("../StudentMedicalRecords/studentMedicalRecords.fxml"));
-            Scene StudentMedicalRecordsScene = new Scene(StudentMedicalRecords);
+            doctorAppointment = FXMLLoader.load(getClass().getResource("../DoctorAppointment/doctorAppointment.fxml"));
+            Scene doctorAppointmentScene = new Scene(doctorAppointment);
 
             //this line gets stage information
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
-            window.setScene(StudentMedicalRecordsScene);
+            window.setScene(doctorAppointmentScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("hello world");
     }
 
     public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {

@@ -71,6 +71,24 @@ public class DoctorHomepageController {
         pst.close();
         rs.close();
     }
+
+    public void onEditProfileClick(ActionEvent actionEvent){
+        Parent doctorEditProfile = null;
+        try {
+            doctorEditProfile = FXMLLoader.load(getClass().getResource("../DoctorEditProfile/doctorEditProfile.fxml"));
+            Scene doctorEditProfileScene = new Scene(doctorEditProfile);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(doctorEditProfileScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;

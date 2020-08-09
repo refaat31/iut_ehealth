@@ -19,18 +19,18 @@
          </font></Label>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton id="navButton" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
-                <JFXButton id="navButton" fx:id="seeAppointmentButton" layoutX="57.0" layoutY="245.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
-                <JFXButton id="navButtonCurrentPage" fx:id="BillRequests" layoutX="54.0" layoutY="308.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="54.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="seeAppointmentButton" layoutX="55.0" layoutY="238.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
+                <JFXButton id="navButtonCurrentPage" fx:id="BillRequests" layoutX="54.0" layoutY="300.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="52.0" layoutY="359.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="53.0" layoutY="420.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-              <JFXButton fx:id="logoutButton" layoutX="51.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="127.0" styleClass="logoutButton" text="Logout">
+              <JFXButton fx:id="logoutButton" layoutX="77.0" layoutY="480.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="60.0" styleClass="logoutButton" text="Logout">
                <stylesheets>
                   <URL value="@../../styles/styles.css" />
                   <URL value="@../../styles/styles.css" />
                </stylesheets>
             </JFXButton>
+            <JFXButton id="navButton" fx:id="editProfileButton" layoutX="55.0" layoutY="185.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
             </children>
         </Pane>
       <JFXTreeTableView fx:id="refundsListView" layoutX="264.0" layoutY="385.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
