@@ -105,7 +105,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();
@@ -113,7 +113,18 @@ public class LoginController {
                     window.setScene(studentHomepageScene);
                     window.show();
                 }
-                else System.out.println("invalid username/password");
+                else{
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage dialog = new Stage();
+                    System.out.println("invalid username/password");
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginFailed.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+                }
             }
             else if(teacherButton.isSelected()) {
                 String teacherQuery = "select *from userteacher where teacherid = '"+emailField.getText()+"'and teacherpassword = '"+passwordField.getText()+"'";
@@ -132,7 +143,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();
@@ -140,7 +151,18 @@ public class LoginController {
                     window.setScene(teacherHomepageScene);
                     window.show();
                 }
-                else System.out.println("invalid username/password");
+                else {
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage dialog = new Stage();
+                    System.out.println("invalid username/password");
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginFailed.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+                }
             }
             else if(doctorButton.isSelected()) {
                 String doctorQuery = "select *from userdoctor where doctorid = '"+emailField.getText()+"'and doctorpassword = '"+passwordField.getText()+"'";
@@ -159,7 +181,7 @@ public class LoginController {
                     dialog.initOwner(window);
                     dialog.setHeight(250);
                     dialog.setWidth(500);
-                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("loginSuccess.fxml")));
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginSuccess.fxml")));
                     dialog.setScene(loginSuccess);
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.showAndWait();
@@ -167,9 +189,31 @@ public class LoginController {
                     window.setScene(doctorHomepageScene);
                     window.show();
                 }
-                else System.out.println("invalid username/password");
+                else {
+                    Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage dialog = new Stage();
+                    System.out.println("invalid username/password");
+                    dialog.initOwner(window);
+                    dialog.setHeight(250);
+                    dialog.setWidth(500);
+                    Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginFailed.fxml")));
+                    dialog.setScene(loginSuccess);
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.showAndWait();
+                }
             }
-            else System.out.println("select a type of user");
+            else {
+                Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                Stage dialog = new Stage();
+                System.out.println("invalid username/password");
+                dialog.initOwner(window);
+                dialog.setHeight(250);
+                dialog.setWidth(500);
+                Scene loginSuccess = new Scene(FXMLLoader.load(getClass().getResource("Popups/loginFailedType.fxml")));
+                dialog.setScene(loginSuccess);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.showAndWait();
+            }
 
            // System.out.println("Connection successful");
         }catch (Exception e){
