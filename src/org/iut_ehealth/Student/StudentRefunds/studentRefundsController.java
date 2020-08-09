@@ -97,9 +97,11 @@ public class studentRefundsController {
 
         TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
         TreeTableColumn status = new TreeTableColumn("Status");
+        TreeTableColumn amount = new TreeTableColumn("Receivable Amount");
         BillNo.setPrefWidth(250);
-        status.setPrefWidth(150);
-        refundsListView.getColumns().addAll(BillNo,status);
+        status.setPrefWidth(100);
+        amount.setPrefWidth(150);
+        refundsListView.getColumns().addAll(BillNo,status,amount);
 
         refundsList = FXCollections.observableArrayList();
 
@@ -111,12 +113,12 @@ public class studentRefundsController {
 //        refundsList.add(new refundModel("001","pending"));
 //        refundsList.add(new refundModel("001","pending"));
 
-        query = "SELECT BillNo,status from billdatabase where id = ?";
+        query = "SELECT BillNo,status,amount from billdatabase where id = ?";
         pst = myConn.prepareStatement(query);
         pst.setString(1,userSession.getUsername());
         rs = pst.executeQuery();
         while(rs.next()){
-            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status")));
+            refundsList.add(new refundModel(rs.getString("BillNo"),rs.getString("status"),rs.getString("amount")));
         }
         pst.close();
         rs.close();
@@ -126,6 +128,9 @@ public class studentRefundsController {
         );
         status.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModel,String>("status")
+        );
+        amount.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModel,String>("amount")
         );
 
        TreeItem <refundModel>  root = new RecursiveTreeItem<>(refundsList,RecursiveTreeObject::getChildren);
@@ -238,7 +243,7 @@ public class studentRefundsController {
         int last_billNo = rs.getInt("MAX(BillNo)");
         rs.close();
 
-        String query2 = "INSERT into billdatabase (BillNo,id,image) values (?,?,?)";
+        String query2 = "INSERT into billdatabase (BillNo,id,image,amount) values (?,?,?,?)";
         pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
@@ -250,6 +255,7 @@ public class studentRefundsController {
         pst.setString(1,Integer.toString(last_billNo+1));
         pst.setString(2,userSession.getUsername());
         pst.setBinaryStream(3,(InputStream)fis,(int)file.length());
+        pst.setString(4,"0");
         pst.execute();
         Parent studentRefunds = null;
         try {

@@ -58,5 +58,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
+      <JFXTextField fx:id="amountButton" labelFloat="true" layoutX="774.0" layoutY="222.0" prefHeight="26.0" prefWidth="189.0" promptText="Enter Amount before accepting">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXTextField>
     </children>
 </AnchorPane>
