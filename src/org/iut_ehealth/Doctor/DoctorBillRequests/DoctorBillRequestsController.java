@@ -59,6 +59,8 @@ public class DoctorBillRequestsController{
 
     @FXML
     private JFXTextField studentId = new JFXTextField();
+    @FXML
+    private JFXTextField amountButton = new JFXTextField();
     UserSession userSession = UserSession.getInstance();
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
     Connection myConn = databaseConnection.getConnectionObject();
@@ -91,9 +93,10 @@ public class DoctorBillRequestsController{
         TreeTableColumn id = new TreeTableColumn("Student Id");
         TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
         TreeTableColumn status = new TreeTableColumn("Status");
+        TreeTableColumn amount = new TreeTableColumn("Receivable Amount");
 //        BillNo.setPrefWidth(250);
 //        status.setPrefWidth(150);
-        refundsListView.getColumns().addAll(id,BillNo,status);
+        refundsListView.getColumns().addAll(id,BillNo,status,amount);
 
         refundsList = FXCollections.observableArrayList();
 
@@ -105,13 +108,13 @@ public class DoctorBillRequestsController{
 //        refundsList.add(new refundModel("001","pending"));
 //        refundsList.add(new refundModel("001","pending"));
 
-        query = "SELECT id,BillNo,status from billdatabase";
+        query = "SELECT id,BillNo,status,amount from billdatabase";
         pst = myConn.prepareStatement(query);
 
         rs = pst.executeQuery();
         while(rs.next()){
             if(rs.getString("status").equals("pending")) {
-                refundsList.add(new refundModelDoctor(rs.getString("id"), rs.getString("BillNo"), rs.getString("status")));
+                refundsList.add(new refundModelDoctor(rs.getString("id"), rs.getString("BillNo"), rs.getString("status"), rs.getString("amount")));
             }
         }
         pst.close();
@@ -125,6 +128,9 @@ public class DoctorBillRequestsController{
         );
         status.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModelDoctor,String>("status")
+        );
+        amount.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModelDoctor,String>("amount")
         );
 
         TreeItem<refundModelDoctor> root = new RecursiveTreeItem<>(refundsList, RecursiveTreeObject::getChildren);
@@ -162,7 +168,7 @@ public class DoctorBillRequestsController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("hello world");
+
     }
     public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
         String query = "SELECT MAX(BillNo) from billdatabase";
@@ -177,7 +183,7 @@ public class DoctorBillRequestsController{
         int last_billNo = rs.getInt("MAX(BillNo)");
         rs.close();
 
-        String query2 = "INSERT into billdatabase (BillNo,id,status,image) values (?,?,?,?)";
+        String query2 = "INSERT into billdatabase (BillNo,id,status,image,amount) values (?,?,?,?,?)";
         pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
@@ -190,6 +196,7 @@ public class DoctorBillRequestsController{
         pst.setString(2, studentId.getText());
         pst.setString(3,"accepted");
         pst.setBinaryStream(4,(InputStream)fis,(int)file.length());
+        pst.setString(5,"0");
         pst.execute();
         refundAlertMessage.setText("File uploaded!");
     }
@@ -275,7 +282,11 @@ public class DoctorBillRequestsController{
 
     public void onBillAccepted(ActionEvent actionEvent) throws SQLException {
         refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        updateBillStatus(rm.getBillNo(),rm.getId(),"accepted");
+        String Amount = amountButton.getText();
+        System.out.println(Amount);
+        updateBillStatus(rm.getBillNo(),rm.getId(),"accepted",Amount);
+
+
         Parent doctorBillRequests = null;
         try {
             doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
@@ -293,7 +304,7 @@ public class DoctorBillRequestsController{
 
     public void onBillRejected(ActionEvent actionEvent) throws SQLException {
         refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        updateBillStatus(rm.getBillNo(),rm.getId(),"rejected");
+        updateBillStatus(rm.getBillNo(),rm.getId(),"rejected","0");
         Parent doctorBillRequests = null;
         try {
             doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
@@ -309,12 +320,15 @@ public class DoctorBillRequestsController{
         }
     }
 
-    public void updateBillStatus(String BillNo,String id,String status) throws SQLException {
-        String query = "UPDATE billdatabase SET status=? WHERE BillNo=? AND id=?";
+    public void updateBillStatus(String BillNo,String id,String status,String Amount) throws SQLException {
+        String query = "UPDATE billdatabase SET status=?,amount = ? WHERE BillNo=? AND id=?";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,status);
-        pst.setString(2,BillNo);
-        pst.setString(3,id);
+        pst.setString(2,Amount);
+        pst.setString(3,BillNo);
+        pst.setString(4,id);
+        System.out.println(Amount);
+        System.out.println("upore amount");
         pst.executeUpdate();
         pst.close();
 

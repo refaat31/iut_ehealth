@@ -8,11 +8,13 @@ public class refundModelDoctor extends RecursiveTreeObject<refundModelDoctor> {
     private SimpleStringProperty id;
     private SimpleStringProperty BillNo;
     private  SimpleStringProperty status;
+    private SimpleStringProperty amount;
 
-    public refundModelDoctor(String id,String BillNo,String status){
+    public refundModelDoctor(String id,String BillNo,String status,String amount){
         this.id = new SimpleStringProperty(id);
         this.BillNo = new SimpleStringProperty(BillNo);
         this.status = new SimpleStringProperty(status);
+        this.amount = new SimpleStringProperty(amount);
     }
 
     public String getId() {
@@ -27,6 +29,10 @@ public class refundModelDoctor extends RecursiveTreeObject<refundModelDoctor> {
         return status.get();
     }
 
+    public String getAmount() {
+        return amount.get();
+    }
+
     public void setId(String id) {
         this.id.set(id);
     }
@@ -37,5 +43,9 @@ public class refundModelDoctor extends RecursiveTreeObject<refundModelDoctor> {
 
     public void setStatus(String status){
         this.status.set(status);
+    }
+
+    public void setAmount(String amount){
+        this.status.set(amount);
     }
 }
