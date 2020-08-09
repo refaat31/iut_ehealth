@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Teacher.TeacherEditProfile.teacherEditProfileController">
+    <children>
+        <JFXButton layoutX="347.0" layoutY="142.0" onAction="#continueHandler" prefHeight="38.0" prefWidth="104.0" style="-fx-background-color: orange;" text="Continue" />
+        <Label layoutX="67.0" layoutY="68.0" prefHeight="46.0" prefWidth="262.0" text="Updated successfully!" textFill="WHITE">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>

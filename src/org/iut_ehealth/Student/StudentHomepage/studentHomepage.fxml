@@ -10,18 +10,18 @@
 <AnchorPane id="studentHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Student.StudentHomepage.studentHomepageController">
    <children>
       <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="WELCOME" />
-      <JFXButton fx:id="logoutButton" layoutX="491.0" layoutY="428.0" onAction="#onLogoutButtonClick" text="Logout" />
       <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
          <children>
-            <JFXButton id="navButton" fx:id="editProfileButton" layoutX="57.0" layoutY="192.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
-            <JFXButton id="navButton" fx:id="myAppointmentsButton" layoutX="57.0" layoutY="245.0" onAction="#onMyAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
-            <JFXButton id="navButton" fx:id="StudentRefundsButton" layoutX="52.0" layoutY="308.0" onAction="#onStudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
-            <JFXButton id="navButton" fx:id="PrescriptionButton" layoutX="52.0" layoutY="368.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
-            <JFXButton id="navButton" fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="434.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="editProfileButton" layoutX="57.0" layoutY="172.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="myAppointmentsButton" layoutX="57.0" layoutY="223.0" onAction="#onMyAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="StudentRefundsButton" layoutX="54.0" layoutY="278.0" onAction="#onStudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="PrescriptionButton" layoutX="52.0" layoutY="330.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="390.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
             <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
             <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
             <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-            <JFXButton id="navButton" fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="496.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="444.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
+            <JFXButton fx:id="logoutButton" layoutX="81.0" layoutY="497.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="58.0" text="Logout" />
          </children>
       </Pane>
       <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
