@@ -321,15 +321,9 @@ public class DoctorBillRequestsController{
     }
 
     public void updateBillStatus(String BillNo,String id,String status,String Amount) throws SQLException {
-        String query = "UPDATE billdatabase SET status=?,amount = ? WHERE BillNo=? AND id=?";
+        String query = "CALL get_refund_amount('" + id + "','" + BillNo + "','" + status + "','" + Amount + "')";
         PreparedStatement pst = myConn.prepareStatement(query);
-        pst.setString(1,status);
-        pst.setString(2,Amount);
-        pst.setString(3,BillNo);
-        pst.setString(4,id);
-        System.out.println(Amount);
-        System.out.println("upore amount");
-        pst.executeUpdate();
+        pst.execute();
         pst.close();
 
 

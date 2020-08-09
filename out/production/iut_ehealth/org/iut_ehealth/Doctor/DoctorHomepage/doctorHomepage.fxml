@@ -10,17 +10,17 @@
 <AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorHomepage.DoctorHomepageController">
     <children>
         <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Welcome Doctor" />
-        <JFXButton fx:id="logoutButton" layoutX="491.0" layoutY="428.0" onAction="#onLogoutButtonClick" text="Logout" />
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
-                <JFXButton fx:id="seeAppointmentButton" layoutX="57.0" layoutY="245.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
-                <JFXButton fx:id="BillRequests" layoutX="52.0" layoutY="308.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Bill Requests" textFill="WHITE" />
-                <JFXButton layoutX="52.0" layoutY="368.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
-                <JFXButton layoutX="52.0" layoutY="434.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="editProfileButton" layoutX="57.0" layoutY="184.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="seeAppointmentButton" layoutX="57.0" layoutY="241.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="BillRequests" layoutX="54.0" layoutY="300.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Bill Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="53.0" layoutY="359.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
+                <JFXButton id="navButton" layoutX="52.0" layoutY="421.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
                 <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                 <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+              <JFXButton fx:id="logoutButton" layoutX="84.0" layoutY="484.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="56.0" text="Logout" />
             </children>
         </Pane>
         <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
