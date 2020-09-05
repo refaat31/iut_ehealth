@@ -224,7 +224,21 @@ public class doctorEditProfileController {
         pst.close();
         rs.close();
     }
+    public void onSlipRequestsClick(ActionEvent actionEvent) {
+        Parent doctorSlipRequests = null;
+        try {
+            doctorSlipRequests = FXMLLoader.load(getClass().getResource("../DoctorSlipRequests/doctorSlipRequests.fxml"));
+            Scene DoctorSlipRequestsScene = new Scene(doctorSlipRequests);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(DoctorSlipRequestsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onLogoutButtonClick(ActionEvent actionEvent) {
         //the scene that we want to load
         Parent LoginController = null;

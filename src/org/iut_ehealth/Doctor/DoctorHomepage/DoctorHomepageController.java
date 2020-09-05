@@ -120,7 +120,21 @@ public class DoctorHomepageController {
         pst.setString(2,userSession.getUsername());
         pst.execute();
     }
+    public void onSlipRequestsClick(ActionEvent actionEvent) {
+        Parent doctorSlipRequests = null;
+        try {
+            doctorSlipRequests = FXMLLoader.load(getClass().getResource("../DoctorSlipRequests/doctorSlipRequests.fxml"));
+            Scene DoctorSlipRequestsScene = new Scene(doctorSlipRequests);
 
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(DoctorSlipRequestsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void browseHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 

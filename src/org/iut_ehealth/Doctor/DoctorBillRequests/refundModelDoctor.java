@@ -46,6 +46,6 @@ public class refundModelDoctor extends RecursiveTreeObject<refundModelDoctor> {
     }
 
     public void setAmount(String amount){
-        this.status.set(amount);
+        this.amount.set(amount);
     }
 }

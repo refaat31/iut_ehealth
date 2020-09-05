@@ -81,8 +81,7 @@
                 </AnchorPane>
             <JFXButton id="navButton" fx:id="seeAppointmentButton" layoutX="56.0" layoutY="239.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
             <JFXButton id="navButton" fx:id="BillRequests" layoutX="56.0" layoutY="290.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Bill Requests" textFill="WHITE" />
-            <JFXButton id="navButton" layoutX="57.0" layoutY="340.0" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
-            <JFXButton id="navButton" layoutX="56.0" layoutY="394.0" prefHeight="40.0" prefWidth="116.0" text="Upload Slip" textFill="WHITE" />
+            <JFXButton id="navButton" layoutX="57.0" layoutY="340.0" onAction="#onSlipRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
             </children>
         </Pane>
          </children>

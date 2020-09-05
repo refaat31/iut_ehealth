@@ -1,4 +1,4 @@
-package org.iut_ehealth.Doctor.DoctorBillRequests;
+package org.iut_ehealth.Doctor.DoctorSlipRequests;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
-import org.iut_ehealth.Student.StudentRefunds.refundModel;
+import org.iut_ehealth.Doctor.DoctorBillRequests.refundModelDoctor;
 import org.iut_ehealth.UserSession;
 
 import java.awt.*;
@@ -31,7 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DoctorBillRequestsController{
+public class DoctorSlipRequestsController {
     @FXML
     private JFXButton logoutButton = new JFXButton();
     @FXML
@@ -49,13 +49,13 @@ public class DoctorBillRequestsController{
     @FXML
     private ImageView refundImage = new ImageView();
     @FXML
-    private javafx.scene.control.Label refundAlertMessage = new Label();
+    private Label refundAlertMessage = new Label();
 
     private FileInputStream fis;
 
     @FXML
     private JFXTreeTableView refundsListView ;
-    ObservableList<refundModelDoctor> refundsList;
+    ObservableList<slipModelDoctor> refundsList;
 
     @FXML
     private JFXTextField studentId = new JFXTextField();
@@ -91,12 +91,9 @@ public class DoctorBillRequestsController{
 
         }
         TreeTableColumn id = new TreeTableColumn("Student Id");
-        TreeTableColumn BillNo = new TreeTableColumn("Bill Number");
+        TreeTableColumn SlipNo = new TreeTableColumn("Slip Number");
         TreeTableColumn status = new TreeTableColumn("Status");
-        TreeTableColumn amount = new TreeTableColumn("Receivable Amount");
-//        BillNo.setPrefWidth(250);
-//        status.setPrefWidth(150);
-        refundsListView.getColumns().addAll(id,BillNo,status,amount);
+        refundsListView.getColumns().addAll(id,SlipNo,status);
 
         refundsList = FXCollections.observableArrayList();
 
@@ -108,13 +105,13 @@ public class DoctorBillRequestsController{
 //        refundsList.add(new refundModel("001","pending"));
 //        refundsList.add(new refundModel("001","pending"));
 
-        query = "SELECT id,BillNo,status,amount from billdatabase";
+        query = "SELECT id,SlipNo,status from yellowslip";
         pst = myConn.prepareStatement(query);
 
         rs = pst.executeQuery();
         while(rs.next()){
             if(rs.getString("status").equals("pending")) {
-                refundsList.add(new refundModelDoctor(rs.getString("id"), rs.getString("BillNo"), rs.getString("status"), rs.getString("amount")));
+                refundsList.add(new slipModelDoctor(rs.getString("id"), rs.getString("SlipNo"), rs.getString("status")));
             }
         }
         pst.close();
@@ -123,17 +120,14 @@ public class DoctorBillRequestsController{
         id.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModelDoctor,String>("id")
         );
-        BillNo.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModelDoctor,String>("BillNo")
+        SlipNo.setCellValueFactory(
+                new TreeItemPropertyValueFactory<refundModelDoctor,String>("SlipNo")
         );
         status.setCellValueFactory(
                 new TreeItemPropertyValueFactory<refundModelDoctor,String>("status")
         );
-        amount.setCellValueFactory(
-                new TreeItemPropertyValueFactory<refundModelDoctor,String>("amount")
-        );
 
-        TreeItem<refundModelDoctor> root = new RecursiveTreeItem<>(refundsList, RecursiveTreeObject::getChildren);
+        TreeItem<slipModelDoctor> root = new RecursiveTreeItem<>(refundsList, RecursiveTreeObject::getChildren);
         refundsListView.setRoot(root);
         refundsListView.setShowRoot(false);
 
@@ -171,7 +165,7 @@ public class DoctorBillRequestsController{
 
     }
     public void refundImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "SELECT MAX(BillNo) from billdatabase";
+        String query = "SELECT MAX(SlipNo) from yellowslip";
         PreparedStatement pst = myConn.prepareStatement(query);
         //manually input the id of the student
         if(studentId.getText().equals("")){
@@ -180,10 +174,10 @@ public class DoctorBillRequestsController{
 
         ResultSet rs = pst.executeQuery();
         rs.next();
-        int last_billNo = rs.getInt("MAX(BillNo)");
+        int last_billNo = rs.getInt("MAX(SlipNo)");
         rs.close();
 
-        String query2 = "INSERT into billdatabase (BillNo,id,status,image,amount) values (?,?,?,?,?)";
+        String query2 = "INSERT into yellowslip (SlipNo,id,status,image) values (?,?,?,?,?)";
         pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
@@ -218,6 +212,22 @@ public class DoctorBillRequestsController{
         else refundAlertMessage.setText("Please select a file");
     }
 
+
+    public void onBillRequestsClick(ActionEvent actionEvent) {
+        Parent doctorBillRequests = null;
+        try {
+            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
+            Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(DoctorBillRequestsScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onSlipRequestsClick(ActionEvent actionEvent) {
         Parent doctorSlipRequests = null;
         try {
@@ -233,33 +243,17 @@ public class DoctorBillRequestsController{
             e.printStackTrace();
         }
     }
-    public void onBillRequestsClick(ActionEvent actionEvent) {
-        Parent doctorBillRequests = null;
-        try {
-            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
-            Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
-
-            //this line gets stage information
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(DoctorBillRequestsScene);
-            window.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("hello world");
-    }
 
     public void getSelectedItem(MouseEvent mouseEvent) throws IOException, SQLException {
-        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        showRefundImage(rm.getBillNo(),rm.getId());
+        slipModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        showRefundImage(rm.getSlipNo(),rm.getId());
 
     }
 
     public void getSelectedItemKey(KeyEvent keyEvent) throws IOException, SQLException {
         if(keyEvent.getCode().toString()=="UP"||keyEvent.getCode().toString()=="DOWN"){
-            refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-            showRefundImage(rm.getBillNo(),rm.getId());
+            slipModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+            showRefundImage(rm.getSlipNo(),rm.getId());
 //           System.out.println(rm.getBillNo());
 //           System.out.println(rm.getStatus());
         }
@@ -267,7 +261,7 @@ public class DoctorBillRequestsController{
     }
 
     public void showRefundImage(String BillNumber,String id) throws SQLException, IOException {
-        String query = "SELECT image from billdatabase WHERE BillNo = ? AND id=? ";
+        String query = "SELECT image from yellowslip WHERE SlipNo = ? AND id=? ";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.setString(1,BillNumber);
         pst.setString(2,id);
@@ -295,15 +289,13 @@ public class DoctorBillRequestsController{
 
 
     public void onBillAccepted(ActionEvent actionEvent) throws SQLException {
-        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        String Amount = amountButton.getText();
-        System.out.println(Amount);
-        updateBillStatus(rm.getBillNo(),rm.getId(),"accepted",Amount);
+        slipModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        updateBillStatus(rm.getSlipNo(),rm.getId(),"accepted");
 
 
         Parent doctorBillRequests = null;
         try {
-            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
+            doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorSlipRequests/doctorSlipRequests.fxml"));
             Scene DoctorBillRequestsScene = new Scene(doctorBillRequests);
 
             //this line gets stage information
@@ -317,8 +309,8 @@ public class DoctorBillRequestsController{
     }
 
     public void onBillRejected(ActionEvent actionEvent) throws SQLException {
-        refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
-        updateBillStatus(rm.getBillNo(),rm.getId(),"rejected","0");
+        slipModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
+        updateBillStatus(rm.getSlipNo(),rm.getId(),"rejected");
         Parent doctorBillRequests = null;
         try {
             doctorBillRequests = FXMLLoader.load(getClass().getResource("../DoctorBillRequests/doctorBillRequests.fxml"));
@@ -334,8 +326,8 @@ public class DoctorBillRequestsController{
         }
     }
 
-    public void updateBillStatus(String BillNo,String id,String status,String Amount) throws SQLException {
-        String query = "CALL get_refund_amount('" + id + "','" + BillNo + "','" + status + "','" + Amount + "')";
+    public void updateBillStatus(String BillNo,String id,String status) throws SQLException {
+        String query = "CALL update_yellowslip('" + id + "','" + BillNo + "','" + status + "')";
         PreparedStatement pst = myConn.prepareStatement(query);
         pst.execute();
         pst.close();

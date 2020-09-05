@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorBillRequests.DoctorBillRequestsController">
+<AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorSlipRequests.DoctorSlipRequestsController">
     <children>
-        <Label layoutX="264.0" layoutY="10.0" prefHeight="47.0" prefWidth="189.0" text="Bill Requests">
+        <Label layoutX="264.0" layoutY="10.0" prefHeight="47.0" prefWidth="189.0" text="Slip Requests">
          <font>
             <Font name="System Bold" size="30.0" />
          </font></Label>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton id="navButton" fx:id="seeAppointmentButton" layoutX="55.0" layoutY="238.0" onAction="#onSeeAppointmentClick" prefHeight="40.0" prefWidth="116.0" text="See Appointments" textFill="WHITE" />
-                <JFXButton id="navButtonCurrentPage" fx:id="BillRequests" layoutX="54.0" layoutY="300.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
-                <JFXButton id="navButton" layoutX="52.0" layoutY="359.0" onAction="#onSlipRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="BillRequests" layoutX="54.0" layoutY="300.0" onAction="#onBillRequestsClick" prefHeight="40.0" prefWidth="116.0" stylesheets="@../../styles/styles.css" text="Bill Requests" textFill="WHITE" />
+                <JFXButton id="navButtonCurrentPage" layoutX="52.0" layoutY="359.0" onAction="#onSlipRequestsClick" prefHeight="40.0" prefWidth="116.0" text="Slip Requests" textFill="WHITE" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
               <JFXButton fx:id="logoutButton" layoutX="77.0" layoutY="480.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="60.0" styleClass="logoutButton" text="Logout">
                <stylesheets>
@@ -57,10 +57,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="amountButton" labelFloat="true" layoutX="774.0" layoutY="222.0" prefHeight="26.0" prefWidth="189.0" promptText="Enter Amount before accepting">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </JFXTextField>
     </children>
 </AnchorPane>
