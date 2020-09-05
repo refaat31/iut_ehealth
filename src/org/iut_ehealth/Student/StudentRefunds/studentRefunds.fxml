@@ -27,7 +27,7 @@
             </children>
         </Pane>
       <JFXTreeTableView fx:id="refundsListView" layoutX="280.0" layoutY="363.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
-      <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="382.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="refundImage" fitHeight="300.0" fitWidth="400.0" layoutX="408.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
           <JFXButton fx:id="sendRefundImage" layoutX="828.0" layoutY="300.0" onAction="#refundImageHandler" style="-fx-background-color: white;" text="Upload Refund Image" />
           <JFXButton fx:id="browseButton" layoutX="963.0" layoutY="300.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
       <Label fx:id="refundAlertMessage" layoutX="829.0" layoutY="279.0" />

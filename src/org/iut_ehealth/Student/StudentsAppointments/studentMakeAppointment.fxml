@@ -11,7 +11,7 @@
 <AnchorPane id="studentMakeAppointment" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Student.StudentsAppointments.studentMakeAppointmentController">
     <children>
         <Label layoutX="518.0" layoutY="31.0" prefHeight="47.0" prefWidth="189.0" text="Make an Appointment" />
-        <JFXButton fx:id="logoutButton" layoutX="900.0" layoutY="542.0" onAction="#onLogoutButtonClick" text="Logout" />
+        <JFXButton fx:id="logoutButton" layoutX="899.0" layoutY="507.0" onAction="#onLogoutButtonClick" text="Logout" />
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton id="navButton" fx:id="editProfileButton" layoutX="57.0" layoutY="192.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
