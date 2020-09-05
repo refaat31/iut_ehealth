@@ -282,7 +282,7 @@ public class studentRefundsController {
         file = fileChooser.showOpenDialog(window);
         if(file!=null){
             selectedFilePath.setText(file.getAbsolutePath());
-            image2 = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            image2 = new Image(file.toURI().toString(),400,500,true,true); //prefheight,prefwidth,preserveRatio,Smooth
             refundImage.setImage(image2);
             refundImage.setFitHeight(300);
             refundImage.setFitWidth(400);
@@ -325,7 +325,7 @@ public class studentRefundsController {
             }
             is.close();
             os.close();
-            image2 = new Image("file:refundImage.jpg",100,150,true,true);
+            image2 = new Image("file:refundImage.jpg",400,500,true,true);
             refundImage.setImage(image2);
             refundImage.setFitHeight(300);
             refundImage.setFitWidth(400);
