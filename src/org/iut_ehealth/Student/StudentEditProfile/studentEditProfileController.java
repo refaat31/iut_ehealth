@@ -20,7 +20,11 @@ import org.iut_ehealth.UserSession;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.*;
+import java.awt.Desktop;
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -285,6 +289,18 @@ public class studentEditProfileController {
 
         window.setScene(LoginControllerScene);
         window.show();
+    }
+
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
     }
 
     public void oneditProfileClick(ActionEvent actionEvent) {

@@ -16,16 +16,16 @@
     <children>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton id="navButtonCurrentPage" layoutX="62.0" layoutY="185.0" prefHeight="34.0" prefWidth="106.0" text="Edit Profile" textFill="WHITE" />
-                <JFXButton id="navButton" fx:id="AppointmentsButton" layoutX="61.0" layoutY="232.0" onAction="#onAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
-                <JFXButton id="navButton" fx:id="studentRefundsButton" layoutX="61.0" layoutY="283.0" onAction="#onstudentRefundsClick" prefHeight="34.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
-                <JFXButton id="navButton" fx:id="PrescriptionButton" layoutX="59.0" layoutY="330.0" onAction="#onPrescriptionButtonClick" prefHeight="34.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
-                <JFXButton id="navButton" fx:id="MedicalRecordsButton" layoutX="62.0" layoutY="379.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
-                <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
-                <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                <JFXButton id="navButton" fx:id="StudentTeacherConnectionButton" layoutX="46.0" layoutY="425.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
-                <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-              <JFXButton fx:id="logoutButton" layoutX="80.0" layoutY="476.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="70.0" text="Logout" />
+                <JFXButton id="navButtonCurrentPage" layoutX="57.0" layoutY="181.0" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="AppointmentsButton" layoutX="57.0" layoutY="232.0" onAction="#onAppointmentsClick" prefHeight="40.0" prefWidth="116.0" text="My Appointments" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="studentRefundsButton" layoutX="54.0" layoutY="287.0" onAction="#onstudentRefundsClick" prefHeight="40.0" prefWidth="116.0" text="Refunds" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="PrescriptionButton" layoutX="52.0" layoutY="339.0" onAction="#onPrescriptionButtonClick" prefHeight="40.0" prefWidth="116.0" text="Prescriptions" textFill="WHITE" />
+                <JFXButton id="navButton" fx:id="MedicalRecordsButton" layoutX="52.0" layoutY="399.0" onAction="#onStudentMedicalRecordsClick" prefHeight="40.0" prefWidth="116.0" text="Medical Records" textFill="WHITE" />
+                <JFXButton fx:id="uploadImage" layoutX="68.0" layoutY="143.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+                <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                <JFXButton id="navButton" fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="453.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
+                <JFXButton fx:id="browseButton" layoutX="166.0" layoutY="143.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
+              <JFXButton fx:id="logoutButton" layoutX="127.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="70.0" text="Logout" />
             <AnchorPane fx:id="signupBox" layoutX="264.0" layoutY="10.0" prefHeight="563.0" prefWidth="540.0" stylesheets="@../../styles/styles.css">
                <children>
                   <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="382.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
@@ -84,6 +84,7 @@
                   </JFXTextField>
                </children>
             </AnchorPane>
+            <JFXButton id="navButton" fx:id="zoombutton" layoutX="52.0" layoutY="513.0" onAction="#onZoomClick" prefHeight="40.0" prefWidth="58.0" text="zoom" textFill="WHITE" />
             </children>
         </Pane>
     </children>

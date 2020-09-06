@@ -19,10 +19,14 @@ import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class studentTeacherConnectionController {
     @FXML
@@ -243,6 +247,17 @@ public class studentTeacherConnectionController {
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
         }
     }
 

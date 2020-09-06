@@ -26,10 +26,14 @@ import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class studentRefundsController {
     @FXML
@@ -170,6 +174,18 @@ public class studentRefundsController {
             e.printStackTrace();
         }
     }
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public void onEditProfileClick(ActionEvent actionEvent){
         Parent studentEditProfile = null;
         try {
@@ -273,7 +289,7 @@ public class studentRefundsController {
         refundAlertMessage.setText("File uploaded!");
     }
 
-    public void browseHandler(ActionEvent actionEvent) {
+    public void browseHandlerRefund(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
         fileChooser.getExtensionFilters().addAll(
@@ -334,6 +350,40 @@ public class studentRefundsController {
         pst.close();
         rs.close();
     }
+
+    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(2,userSession.getUsername());
+        pst.execute();
+    }
+
+    public void browseHandler(ActionEvent actionEvent) {
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files (*.jpg,*.png)","*.jpg","*.png")
+        );
+        file = fileChooser.showOpenDialog(window);
+        if(file!=null){
+            selectedFilePath.setText(file.getAbsolutePath());
+            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            profilePicture.setImage(image);
+            profilePicture.setFitHeight(100);
+            profilePicture.setFitWidth(100);
+            profilePicture.setPreserveRatio(true);
+        }
+        else selectedFilePath.setText("No file selected");
+    }
+
 
 
 }

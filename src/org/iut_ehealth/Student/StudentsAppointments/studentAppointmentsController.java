@@ -26,6 +26,9 @@ import javafx.stage.Stage;
 import org.iut_ehealth.DatabaseConnection;
 import org.iut_ehealth.Student.StudentRefunds.refundModel;
 import org.iut_ehealth.UserSession;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,6 +38,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class studentAppointmentsController {
     @FXML
@@ -191,6 +196,18 @@ public class studentAppointmentsController {
             e.printStackTrace();
         }
     }
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public void onRefundsClick(ActionEvent actionEvent){
         Parent StudentRefunds = null;
         try {
@@ -286,6 +303,20 @@ public class studentAppointmentsController {
         }
     }
 
+    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(2,userSession.getUsername());
+        pst.execute();
+    }
 
     public void browseHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();

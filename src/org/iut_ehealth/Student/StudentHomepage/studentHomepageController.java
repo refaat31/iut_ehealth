@@ -17,10 +17,14 @@ import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.awt.Desktop;
+import java.net.URI;
 
 public class studentHomepageController {
     @FXML
@@ -91,6 +95,18 @@ public class studentHomepageController {
         window.setScene(LoginControllerScene);
         window.show();
     }
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public void onEditProfileClick(ActionEvent actionEvent){
         Parent studentEditProfile = null;
         try {

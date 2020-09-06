@@ -26,10 +26,15 @@ import org.iut_ehealth.UserSession;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Desktop;
+import java.net.URI;
+
 
 public class studentPrescriptionController {
     @FXML
@@ -197,6 +202,17 @@ public class studentPrescriptionController {
 
     }
 
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public void onPrescriptionButtonClick(ActionEvent actionEvent){
         Parent StudentPrescription = null;
         try {
@@ -207,6 +223,22 @@ public class studentPrescriptionController {
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
             window.setScene(StudentPrescriptionScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onRefundsClick(ActionEvent actionEvent){
+        Parent StudentRefunds = null;
+        try {
+            StudentRefunds = FXMLLoader.load(getClass().getResource("../StudentRefunds/studentRefunds.fxml"));
+            Scene StudentRefundsScene = new Scene(StudentRefunds);
+
+            //this line gets stage information
+            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(StudentRefundsScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -266,7 +298,7 @@ public class studentPrescriptionController {
         refundAlertMessage.setText("File uploaded!");
     }
 
-    public void browseHandler(ActionEvent actionEvent) {
+    public void browseHandlerPrescription(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
         fileChooser.getExtensionFilters().addAll(
@@ -328,5 +360,37 @@ public class studentPrescriptionController {
         rs.close();
     }
 
+    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "UPDATE userstudentinfo SET image=? WHERE studentid=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(2,userSession.getUsername());
+        pst.execute();
+    }
+
+    public void browseHandler(ActionEvent actionEvent) {
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files (*.jpg,*.png)","*.jpg","*.png")
+        );
+        file = fileChooser.showOpenDialog(window);
+        if(file!=null){
+            selectedFilePath.setText(file.getAbsolutePath());
+            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            profilePicture.setImage(image);
+            profilePicture.setFitHeight(100);
+            profilePicture.setFitWidth(100);
+            profilePicture.setPreserveRatio(true);
+        }
+        else selectedFilePath.setText("No file selected");
+    }
 
 }

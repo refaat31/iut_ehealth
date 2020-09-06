@@ -22,6 +22,8 @@ import org.iut_ehealth.UserSession;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,6 +32,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class studentMakeAppointmentController implements Initializable {
     @FXML
@@ -351,6 +355,18 @@ public class studentMakeAppointmentController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void onZoomClick(ActionEvent actionEvent) {
+
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://zoom.us/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public void onRefundsClick(ActionEvent actionEvent){
         Parent StudentRefunds = null;
         try {
