@@ -41,3 +41,8 @@
 	-fx-background-radius: 20px;
 	-fx-text-fill: white;
 }
+#backButton {
+	-fx-border-color: white;
+	-fx-opacity: 70%;
+	-fx-border-radius: 20px;
+}

@@ -25,9 +25,9 @@
                 <AnchorPane fx:id="signupBox" layoutX="264.0" layoutY="10.0" prefHeight="563.0" prefWidth="540.0" stylesheets="@../../styles/styles.css">
                     <children>
                         <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="382.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
-                        <Label layoutX="20.0" layoutY="10.0" prefHeight="34.0" prefWidth="116.0" text="Edit Profile">
+                        <Label layoutX="20.0" layoutY="10.0" prefHeight="45.0" prefWidth="198.0" text="Edit Profile">
                             <font>
-                                <Font size="20.0" />
+                                <Font name="System Bold" size="30.0" />
                             </font>
                         </Label>
                         <HBox layoutX="106.0" layoutY="382.0" />

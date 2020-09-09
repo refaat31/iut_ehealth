@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="doctorHomepage" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Doctor.DoctorHomepage.DoctorHomepageController">
     <children>
-        <Label layoutX="563.0" layoutY="117.0" prefHeight="47.0" prefWidth="189.0" text="Welcome Doctor" />
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton id="navButton" fx:id="editProfileButton" layoutX="57.0" layoutY="184.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
@@ -22,6 +21,10 @@
               <JFXButton fx:id="logoutButton" layoutX="84.0" layoutY="484.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="56.0" text="Logout" />
             </children>
         </Pane>
-        <JFXTextArea fx:id="selectedFilePath" editable="false" layoutX="266.0" layoutY="117.0" prefHeight="50.0" prefWidth="300.0" text="Path of selected file&#10;" />
+      <Label layoutX="382.0" layoutY="263.0" prefHeight="47.0" prefWidth="488.0" text="Welcome to IUT E-Health System">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

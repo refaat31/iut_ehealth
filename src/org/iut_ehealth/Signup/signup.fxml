@@ -26,7 +26,10 @@
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets></JFXTextField>
-                <JFXButton fx:id="signupnowButton" layoutX="384.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup" />
+                <JFXButton id="acceptButton" fx:id="signupnowButton" layoutX="384.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup">
+               <font>
+                  <Font size="13.0" />
+               </font></JFXButton>
                 <JFXRadioButton fx:id="doctorButton" layoutX="277.0" layoutY="59.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
                 <JFXRadioButton fx:id="teacherButton" layoutX="182.0" layoutY="59.0" onAction="#onTeacherButtonChosen" text="Teacher" />
                 <JFXRadioButton fx:id="studentButton" layoutX="88.0" layoutY="58.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
@@ -59,6 +62,6 @@
                 <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="499.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
             </children>
         </AnchorPane>
-      <JFXButton fx:id="backButton" layoutX="62.0" layoutY="530.0" onAction="#onBackClick" prefHeight="26.0" prefWidth="63.0" text="Back" />
+      <JFXButton id="rejectButton" fx:id="backButton" layoutX="37.0" layoutY="530.0" onAction="#onBackClick" prefHeight="34.0" prefWidth="88.0" text="Back" />
     </children>
 </AnchorPane>

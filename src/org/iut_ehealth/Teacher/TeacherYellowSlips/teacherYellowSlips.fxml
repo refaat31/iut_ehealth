@@ -6,10 +6,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="teacherYellowSlips" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iut_ehealth.Teacher.TeacherYellowSlips.teacherYellowSlipsController">
     <children>
-        <Label layoutX="266.0" layoutY="14.0" prefHeight="47.0" prefWidth="157.0" text="See Yellow Slips" />
+        <Label layoutX="269.0" layoutY="7.0" prefHeight="47.0" prefWidth="231.0" text="See Yellow Slips">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font></Label>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
                 <JFXButton id="navButtonCurrentPage" fx:id="seeyellowslipsButton" layoutX="57.0" layoutY="251.0" onAction="#onSeeYellowSlipsClick" prefHeight="40.0" prefWidth="116.0" text="See Yellow Slips" textFill="WHITE" />
