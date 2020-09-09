@@ -177,7 +177,7 @@ public class DoctorSlipRequestsController {
         int last_billNo = rs.getInt("MAX(SlipNo)");
         rs.close();
 
-        String query2 = "INSERT into yellowslip (SlipNo,id,status,image) values (?,?,?,?,?)";
+        String query2 = "INSERT into yellowslip (SlipNo,id,status,image) values (?,?,?,?)";
         pst = myConn.prepareStatement(query2);
         try {
             fis = new FileInputStream(file);
@@ -190,7 +190,6 @@ public class DoctorSlipRequestsController {
         pst.setString(2, studentId.getText());
         pst.setString(3,"accepted");
         pst.setBinaryStream(4,(InputStream)fis,(int)file.length());
-        pst.setString(5,"0");
         pst.execute();
         refundAlertMessage.setText("File uploaded!");
     }

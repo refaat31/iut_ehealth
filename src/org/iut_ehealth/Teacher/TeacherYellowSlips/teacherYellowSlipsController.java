@@ -95,8 +95,8 @@ public class teacherYellowSlipsController {
         yellowSlipsListView.getColumns().addAll(SlipNo,Id);
 
         yellowSlipsList = FXCollections.observableArrayList();
-        String accept1 = "accept";
-        query = "select * from yellowslip,teacher_student_connection where teacher_student_connection.teacherid = '"+userSession.getUsername()+"' and yellowslip.accept = '"+accept1+"'and teacher_student_connection.studentid = yellowslip.Id" ;
+        String accept1 = "accepted";
+        query = "select * from yellowslip,teacher_student_connection where teacher_student_connection.teacherid = '"+userSession.getUsername()+"' and yellowslip.status = '"+accept1+"'and teacher_student_connection.studentid = yellowslip.id" ;
         pst = myConn.prepareStatement(query);
         rs = pst.executeQuery();
         while(rs.next()){
@@ -148,7 +148,7 @@ public class teacherYellowSlipsController {
             }
             is.close();
             os.close();
-            image2 = new Image("file:refundImage.jpg",100,150,true,true);
+            image2 = new Image("file:refundImage.jpg",400,500,true,true);
             yellowSlipsImage.setImage(image2);
             yellowSlipsImage.setFitHeight(300);
             yellowSlipsImage.setFitWidth(400);
