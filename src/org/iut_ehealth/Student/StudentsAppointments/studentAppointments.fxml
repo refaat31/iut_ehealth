@@ -29,7 +29,7 @@
         </Pane>
         <JFXTreeTableView fx:id="appointmentsListView" layoutX="280.0" layoutY="125.0" prefHeight="357.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />
         <Label fx:id="refundAlertMessage" layoutX="829.0" layoutY="279.0" />
-      <JFXButton fx:id="makeappointmentButton" layoutX="829.0" layoutY="40.0" onAction="#onMakeAppointmentClick" prefHeight="32.0" prefWidth="138.0" text="Make an Appointment" />
+      <JFXButton id="acceptButton" fx:id="makeappointmentButton" layoutX="829.0" layoutY="40.0" onAction="#onMakeAppointmentClick" prefHeight="32.0" prefWidth="138.0" text="Make an Appointment" />
       <JFXButton fx:id="uploadImage" layoutX="68.0" layoutY="143.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
       <JFXButton fx:id="browseButton" layoutX="166.0" layoutY="143.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
     </children>

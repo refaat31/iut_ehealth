@@ -206,7 +206,7 @@ public class studentPrescriptionController {
 
         Desktop d = Desktop.getDesktop();
         try {
-            d.browse(new URI("https://zoom.us/"));
+            d.browse(new URI("https://zoom.us/j/8812060673?pwd=M05OUUd1bGQ2Qzd5T2J0Z1psc3o4UT09/"));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
 
