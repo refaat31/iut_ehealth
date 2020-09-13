@@ -7,16 +7,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-java-5.1.49/mysql-connector-java-5.1.49.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../mysql connector 5.1.49/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="project" />
   </component>
 </module>

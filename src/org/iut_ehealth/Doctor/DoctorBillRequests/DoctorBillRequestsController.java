@@ -297,7 +297,7 @@ public class DoctorBillRequestsController{
     public void onBillAccepted(ActionEvent actionEvent) throws SQLException {
         refundModelDoctor rm = refundsList.get(refundsListView.getSelectionModel().getSelectedIndex());
         String Amount = amountButton.getText();
-        System.out.println(Amount);
+        //System.out.println(Amount);
         updateBillStatus(rm.getBillNo(),rm.getId(),"accepted",Amount);
 
 

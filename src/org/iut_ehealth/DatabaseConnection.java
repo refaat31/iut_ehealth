@@ -7,10 +7,13 @@ public class DatabaseConnection {
     private static DatabaseConnection instance = null;
 
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12359105";
-    private String username = "sql12359105";
+    //private String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12359105";
+    private String url = "jdbc:mysql://localhost:3306/iut e-health";
+    //private String username = "sql12359105";
+    private String username = "root";
     //this is a testing comment
-    private String password="XsBjh9d1MD";
+    //private String password="XsBjh9d1MD";
+    private String password="";
     private Connection myConn_;
 
     //factory method
