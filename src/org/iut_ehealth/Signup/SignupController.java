@@ -91,16 +91,26 @@ public class SignupController implements Initializable {
     public void onStudentButtonChosen(ActionEvent actionEvent) {
         doctorButton.setSelected(false);
         teacherButton.setSelected(false);
+        departmentField.getItems().removeAll("CSE","EEE","MPE","CEE","BTM","TVE");
+        departmentField.getItems().removeAll("cardiac","dental","neurology","medicine","eye","kidney");
+        departmentField.getItems().addAll("CSE","EEE","MPE","CEE","BTM","TVE");
     }
 
     public void onTeacherButtonChosen(ActionEvent actionEvent) {
         studentButton.setSelected(false);
         doctorButton.setSelected(false);
+        departmentField.getItems().removeAll("CSE","EEE","MPE","CEE","BTM","TVE");
+        departmentField.getItems().removeAll("cardiac","dental","neurology","medicine","eye","kidney");
+        departmentField.getItems().addAll("CSE","EEE","MPE","CEE","BTM","TVE");
+
+
     }
 
     public void onDoctorButtonChosen(ActionEvent actionEvent) {
         studentButton.setSelected(false);
         teacherButton.setSelected(false);
+        departmentField.getItems().removeAll("CSE","EEE","MPE","CEE","BTM","TVE");
+        departmentField.getItems().addAll("cardiac","dental","neurology","medicine","eye","kidney");
     }
     public void onResidentialButtonChosen(ActionEvent actionEvent) {
         NonResButton.setSelected(false);
