@@ -49,11 +49,18 @@ public class teacherHomepageController  {
 
 
     public void initialize() throws SQLException, IOException {
+        boolean f=true;
         String query = "SELECT image from userteacherinfo WHERE teacherid=?";
+        if(image==null){
+            query = "SELECT image from dp where 1";
+            f=false;
+        }
         PreparedStatement pst = myConn.prepareStatement(query);
-        pst.setString(1,userSession.getUsername());
-
+        if(f){
+            pst.setString(1,userSession.getUsername());
+        }
         ResultSet rs = pst.executeQuery();
+
         if(rs.next()){
             InputStream is = rs.getBinaryStream("image");
             OutputStream os = new FileOutputStream(new File("photo.jpg"));

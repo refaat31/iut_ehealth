@@ -47,10 +47,16 @@ public class DoctorHomepageController {
 
 
     public void initialize() throws SQLException, IOException {
+        boolean f=true;
         String query = "SELECT image from userdoctorinfo WHERE doctorid=?";
+        if(image==null){
+            query = "SELECT image from dp where 1";
+            f=false;
+        }
         PreparedStatement pst = myConn.prepareStatement(query);
-        pst.setString(1,userSession.getUsername());
-
+        if(f){
+            pst.setString(1,userSession.getUsername());
+        }
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             InputStream is = rs.getBinaryStream("image");
