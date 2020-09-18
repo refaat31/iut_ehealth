@@ -62,5 +62,7 @@
             <Insets />
          </opaqueInsets>
       </JFXTextField>
+      <JFXButton fx:id="uploadImage1" layoutX="68.0" layoutY="144.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
+      <JFXButton fx:id="browseButton1" layoutX="166.0" layoutY="144.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
     </children>
 </AnchorPane>

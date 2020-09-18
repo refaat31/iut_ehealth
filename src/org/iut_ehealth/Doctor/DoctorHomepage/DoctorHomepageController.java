@@ -127,20 +127,7 @@ public class DoctorHomepageController {
         window.show();
     }
 
-    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
-        String query = "UPDATE userdoctorinfo SET image=? WHERE doctorid=?";
-        PreparedStatement pst = myConn.prepareStatement(query);
 
-        try {
-            fis = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
-        pst.setString(2,userSession.getUsername());
-        pst.execute();
-    }
     public void onSlipRequestsClick(ActionEvent actionEvent) {
         Parent doctorSlipRequests = null;
         try {
@@ -156,6 +143,22 @@ public class DoctorHomepageController {
             e.printStackTrace();
         }
     }
+
+    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "UPDATE userdoctorinfo SET image=? WHERE doctorid=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(2,userSession.getUsername());
+        pst.execute();
+    }
+
     public void browseHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 

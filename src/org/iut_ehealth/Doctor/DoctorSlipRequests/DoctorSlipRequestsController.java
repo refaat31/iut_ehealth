@@ -193,24 +193,6 @@ public class DoctorSlipRequestsController {
         pst.execute();
         refundAlertMessage.setText("File uploaded!");
     }
-    public void browseHandler(ActionEvent actionEvent) {
-        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files (*.jpg,*.png)","*.jpg","*.png")
-        );
-        file = fileChooser.showOpenDialog(window);
-        if(file!=null){
-            selectedFilePath.setText(file.getAbsolutePath());
-            image2 = new Image(file.toURI().toString(),400,500,true,true); //prefheight,prefwidth,preserveRatio,Smooth
-            refundImage.setImage(image2);
-            refundImage.setFitHeight(300);
-            refundImage.setFitWidth(400);
-            refundImage.setPreserveRatio(true);
-        }
-        else refundAlertMessage.setText("Please select a file");
-    }
-
 
     public void onBillRequestsClick(ActionEvent actionEvent) {
         Parent doctorBillRequests = null;
@@ -349,4 +331,38 @@ public class DoctorSlipRequestsController {
         }
 
     }
+
+    public void uploadImageHandler(ActionEvent actionEvent) throws SQLException {
+        String query = "UPDATE userdoctorinfo SET image=? WHERE doctorid=?";
+        PreparedStatement pst = myConn.prepareStatement(query);
+
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        pst.setBinaryStream(1,(InputStream)fis,(int)file.length());
+        pst.setString(2,userSession.getUsername());
+        pst.execute();
+    }
+
+    public void browseHandler(ActionEvent actionEvent) {
+        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files (*.jpg,*.png)","*.jpg","*.png")
+        );
+        file = fileChooser.showOpenDialog(window);
+        if(file!=null){
+            selectedFilePath.setText(file.getAbsolutePath());
+            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            profilePicture.setImage(image);
+            profilePicture.setFitHeight(100);
+            profilePicture.setFitWidth(100);
+            profilePicture.setPreserveRatio(true);
+        }
+        else selectedFilePath.setText("No file selected");
+    }
+
 }

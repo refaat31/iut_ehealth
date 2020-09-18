@@ -52,6 +52,9 @@ public class studentAppointmentsController {
     private File file ;
     private Desktop desktop = Desktop.getDesktop();
 
+    @FXML
+    private JFXTextArea selectedFilePath = new JFXTextArea();
+    private FileChooser fileChooser = new FileChooser();
 
 
     private Image image ;
@@ -321,5 +324,18 @@ public class studentAppointmentsController {
     public void browseHandler(ActionEvent actionEvent) {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files (*.jpg,*.png)","*.jpg","*.png")
+        );
+        file = fileChooser.showOpenDialog(window);
+        if(file!=null){
+            selectedFilePath.setText(file.getAbsolutePath());
+            image = new Image(file.toURI().toString(),100,150,true,true); //prefheight,prefwidth,preserveRatio,Smooth
+            profilePicture.setImage(image);
+            profilePicture.setFitHeight(100);
+            profilePicture.setFitWidth(100);
+            profilePicture.setPreserveRatio(true);
+        }
+        else selectedFilePath.setText("No file selected");
     }
 }
