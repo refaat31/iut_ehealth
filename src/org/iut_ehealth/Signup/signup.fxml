@@ -26,7 +26,7 @@
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets></JFXTextField>
-                <JFXButton id="acceptButton" fx:id="signupnowButton" layoutX="384.0" layoutY="512.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup">
+                <JFXButton id="acceptButton" fx:id="signupnowButton" layoutX="384.0" layoutY="508.0" onAction="#onSignupClick" prefHeight="34.0" prefWidth="160.0" text="Signup">
                <font>
                   <Font size="13.0" />
                </font></JFXButton>
@@ -62,6 +62,6 @@
                 <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="88.0" layoutY="499.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
             </children>
         </AnchorPane>
-      <JFXButton id="rejectButton" fx:id="backButton" layoutX="38.0" layoutY="523.0" onAction="#onBackClick" prefHeight="34.0" prefWidth="88.0" text="Back" />
+      <JFXButton id="rejectButton" fx:id="backButton" layoutX="38.0" layoutY="516.0" onAction="#onBackClick" prefHeight="34.0" prefWidth="88.0" text="Back" />
     </children>
 </AnchorPane>
