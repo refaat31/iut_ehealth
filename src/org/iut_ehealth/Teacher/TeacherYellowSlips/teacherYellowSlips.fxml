@@ -20,8 +20,8 @@
                 <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                 <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-            <JFXButton id="navButton" fx:id="editprofilebutton" layoutX="57.0" layoutY="191.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
-              <JFXButton fx:id="logoutButton" layoutX="84.0" layoutY="434.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="59.0" text="Logout" />
+            <JFXButton id="navButton" fx:id="editprofilebutton" layoutX="57.0" layoutY="192.0" onAction="#onEditProfileClick" prefHeight="40.0" prefWidth="116.0" style="-fx-border-color: white; -fx-background-radius: 20;" text="Edit Profile" textFill="WHITE" />
+              <JFXButton fx:id="logoutButton" layoutX="83.0" layoutY="319.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="59.0" text="Logout" />
             </children>
         </Pane>
       <JFXTreeTableView fx:id="yellowSlipsListView" layoutX="290.0" layoutY="373.0" onKeyPressed="#getSelectedItemKey" onMouseClicked="#getSelectedItem" prefHeight="180.0" prefWidth="694.0" stylesheets="@../../styles/tableView.css" />

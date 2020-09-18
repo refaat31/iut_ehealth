@@ -25,7 +25,7 @@
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                 <JFXButton id="navButton" fx:id="StudentTeacherConnectionButton" layoutX="32.0" layoutY="453.0" onAction="#onStudentTeacherConnectionClick" prefHeight="40.0" prefWidth="156.0" text="Connect with a Teacher" textFill="WHITE" />
                 <JFXButton fx:id="browseButton" layoutX="166.0" layoutY="143.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-              <JFXButton fx:id="logoutButton" layoutX="127.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="70.0" text="Logout" />
+              <JFXButton fx:id="logoutButton" layoutX="121.0" layoutY="513.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="58.0" text="Logout" />
             <AnchorPane fx:id="signupBox" layoutX="264.0" layoutY="10.0" prefHeight="563.0" prefWidth="540.0" stylesheets="@../../styles/styles.css">
                <children>
                   <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="382.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
@@ -84,7 +84,7 @@
                   </JFXTextField>
                </children>
             </AnchorPane>
-            <JFXButton id="navButton" fx:id="zoombutton" layoutX="52.0" layoutY="513.0" onAction="#onZoomClick" prefHeight="40.0" prefWidth="58.0" text="zoom" textFill="WHITE" />
+            <JFXButton id="navButton" fx:id="zoombutton" layoutX="46.0" layoutY="513.0" onAction="#onZoomClick" prefHeight="40.0" prefWidth="58.0" text="zoom" textFill="WHITE" />
             </children>
         </Pane>
     </children>

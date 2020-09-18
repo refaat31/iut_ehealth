@@ -16,12 +16,12 @@
     <children>
         <Pane layoutY="-1.0" prefHeight="600.0" prefWidth="246.0" style="-fx-background-color: black;">
             <children>
-                <JFXButton id="navButtonCurrentPage" layoutX="62.0" layoutY="185.0" prefHeight="40.0" prefWidth="100.0" text="Edit Profile" textFill="WHITE" />
+                <JFXButton id="navButtonCurrentPage" layoutX="57.0" layoutY="192.0" prefHeight="40.0" prefWidth="116.0" text="Edit Profile" textFill="WHITE" />
                 <JFXButton id="navButton" fx:id="seeyellowslipsButton" layoutX="57.0" layoutY="251.0" onAction="#onSeeYellowSlipsClick" prefHeight="40.0" prefWidth="116.0" text="See Yellow Slips" textFill="WHITE" />
                 <JFXButton fx:id="uploadImage" layoutX="58.0" layoutY="134.0" onAction="#uploadImageHandler" style="-fx-background-color: white;" text="Upload Image" />
                 <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" layoutX="69.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                 <JFXButton fx:id="browseButton" layoutX="156.0" layoutY="134.0" onAction="#browseHandler" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: white;" text="..." />
-                <JFXButton fx:id="logoutButton" layoutX="81.0" layoutY="444.0" onAction="#onLogoutButtonClick" prefHeight="46.0" prefWidth="63.0" text="Logout" />
+                <JFXButton fx:id="logoutButton" layoutX="83.0" layoutY="319.0" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="59.0" text="Logout" />
                 <AnchorPane fx:id="signupBox" layoutX="264.0" layoutY="10.0" prefHeight="563.0" prefWidth="540.0" stylesheets="@../../styles/styles.css">
                     <children>
                         <JFXPasswordField fx:id="passwordField" labelFloat="true" layoutX="88.0" layoutY="382.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" style="-fx-border-radius: 20;" />
@@ -37,7 +37,7 @@
                             </opaqueInsets>
                         </JFXTextField>
                         <JFXButton fx:id="editProfilenowButton" layoutX="258.0" layoutY="491.0" onAction="#oneditProfileClick" prefHeight="34.0" prefWidth="160.0" style="-fx-background-color: white;" text="Update" />
-                        <JFXRadioButton fx:id="studentButton" layoutX="110.0" layoutY="83.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" selected="true" text="Student" />
+                        <JFXRadioButton fx:id="studentButton" layoutX="110.0" layoutY="83.0" onAction="#onStudentButtonChosen" prefHeight="18.0" prefWidth="70.0" text="Student" />
                         <JFXTextField fx:id="nameField" labelFloat="true" layoutX="90.0" layoutY="149.0" prefHeight="26.0" prefWidth="149.0" promptText="Name">
                             <opaqueInsets>
                                 <Insets />
@@ -57,7 +57,7 @@
                         </JFXTextField>
                         <JFXPasswordField fx:id="confirmpasswordField" labelFloat="true" layoutX="89.0" layoutY="433.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirm Password" style="-fx-border-radius: 20;" />
                         <JFXRadioButton fx:id="doctorButton" layoutX="305.0" layoutY="82.0" onAction="#onDoctorButtonChosen" prefHeight="10.0" prefWidth="63.0" text="Doctor" textAlignment="RIGHT" />
-                        <JFXRadioButton fx:id="teacherButton" layoutX="210.0" layoutY="84.0" onAction="#onTeacherButtonChosen" text="Teacher" />
+                        <JFXRadioButton fx:id="teacherButton" layoutX="210.0" layoutY="84.0" onAction="#onTeacherButtonChosen" selected="true" text="Teacher" />
                         <JFXTextField fx:id="bloodGroupField" labelFloat="true" layoutX="88.0" layoutY="330.0" prefHeight="26.0" prefWidth="149.0" promptText="Blood group">
                             <opaqueInsets>
                                 <Insets />
