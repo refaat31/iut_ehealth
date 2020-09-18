@@ -80,36 +80,48 @@ public class studentMakeAppointmentController implements Initializable {
 
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
-
-                try{
+                try {
                     InputStream is = rs.getBinaryStream("image");
                     OutputStream os = new FileOutputStream(new File("photo.jpg"));
                     byte[] content = new byte[1024];
                     int size = 0;
-                    while((size = is.read(content))!=-1){
-                        os.write(content,0,size);
+                    while ((size = is.read(content)) != -1) {
+                        os.write(content, 0, size);
                     }
                     is.close();
                     os.close();
-                }catch(FileNotFoundException e){
-
-                }catch(IOException e){
-                    
+                    image = new Image("file:photo.jpg", 100, 150, true, true);
+                    profilePicture.setImage(image);
+                    profilePicture.setFitHeight(100);
+                    profilePicture.setFitWidth(100);
+                    profilePicture.setPreserveRatio(true);
+                }catch(Exception  e){
+                    query = "SELECT image from dp where 1";
+                    pst = myConn.prepareStatement(query);
+                    rs = pst.executeQuery();
+                    rs.next();
+                    InputStream is = rs.getBinaryStream("image");
+                    OutputStream os = new FileOutputStream(new File("photo.jpg"));
+                    byte[] content = new byte[1024];
+                    int size = 0;
+                    while ((size = is.read(content)) != -1) {
+                        os.write(content, 0, size);
+                    }
+                    is.close();
+                    os.close();
+                    image = new Image("file:photo.jpg", 100, 150, true, true);
+                    profilePicture.setImage(image);
+                    profilePicture.setFitHeight(100);
+                    profilePicture.setFitWidth(100);
+                    profilePicture.setPreserveRatio(true);
                 }
-
-
-                image = new Image("file:photo.jpg",100,150,true,true);
-                profilePicture.setImage(image);
-                profilePicture.setFitHeight(100);
-                profilePicture.setFitWidth(100);
-                profilePicture.setPreserveRatio(true);
             }
             pst.close();
             rs.close();
             monthField.getItems().addAll("1","2","3","4","5","6","7","8","9","10","11","12");
             timeField.getItems().addAll("08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00");
             dayField.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9","10","11", "12", "13", "14", "15", "16", "17", "18", "19","20","21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
 

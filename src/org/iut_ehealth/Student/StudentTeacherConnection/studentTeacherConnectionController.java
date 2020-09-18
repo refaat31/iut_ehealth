@@ -68,20 +68,41 @@ public class studentTeacherConnectionController {
 
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            InputStream is = rs.getBinaryStream("image");
-            OutputStream os = new FileOutputStream(new File("photo.jpg"));
-            byte[] content = new byte[1024];
-            int size = 0;
-            while((size = is.read(content))!=-1){
-                os.write(content,0,size);
+            try {
+                InputStream is = rs.getBinaryStream("image");
+                OutputStream os = new FileOutputStream(new File("photo.jpg"));
+                byte[] content = new byte[1024];
+                int size = 0;
+                while ((size = is.read(content)) != -1) {
+                    os.write(content, 0, size);
+                }
+                is.close();
+                os.close();
+                image = new Image("file:photo.jpg", 100, 150, true, true);
+                profilePicture.setImage(image);
+                profilePicture.setFitHeight(100);
+                profilePicture.setFitWidth(100);
+                profilePicture.setPreserveRatio(true);
+            }catch(Exception  e){
+                query = "SELECT image from dp where 1";
+                pst = myConn.prepareStatement(query);
+                rs = pst.executeQuery();
+                rs.next();
+                InputStream is = rs.getBinaryStream("image");
+                OutputStream os = new FileOutputStream(new File("photo.jpg"));
+                byte[] content = new byte[1024];
+                int size = 0;
+                while ((size = is.read(content)) != -1) {
+                    os.write(content, 0, size);
+                }
+                is.close();
+                os.close();
+                image = new Image("file:photo.jpg", 100, 150, true, true);
+                profilePicture.setImage(image);
+                profilePicture.setFitHeight(100);
+                profilePicture.setFitWidth(100);
+                profilePicture.setPreserveRatio(true);
             }
-            is.close();
-            os.close();
-            image = new Image("file:photo.jpg",100,150,true,true);
-            profilePicture.setImage(image);
-            profilePicture.setFitHeight(100);
-            profilePicture.setFitWidth(100);
-            profilePicture.setPreserveRatio(true);
         }
         pst.close();
         rs.close();

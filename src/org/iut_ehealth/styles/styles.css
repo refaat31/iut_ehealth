@@ -30,6 +30,12 @@
 	-fx-text-fill: black;
 }
 
+#navzoom{
+    -fx-background-color: #0080FE;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+}
+
 #acceptButton{
 	-fx-background-color: mediumseagreen;
 	-fx-background-radius: 20px;
